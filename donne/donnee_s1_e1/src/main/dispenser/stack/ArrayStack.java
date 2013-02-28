@@ -1,6 +1,8 @@
 package dispenser.stack;
 
 import dispenser.Dispenser;
+import java.lang.StackOverflowError;
+import java.util.EmptyStackException;
 
 /**
  * The
@@ -41,7 +43,7 @@ public class ArrayStack<E> implements Dispenser<E> {
     @Override
     public void put(E item) {
         if (count >= MAX_ITEM) {
-            // TODO throw a StackOverflowException
+            throw new StackOverflowError();
         }
         items[count++] = item;
     }
@@ -54,7 +56,7 @@ public class ArrayStack<E> implements Dispenser<E> {
     @Override
     public E remove() {
         if (count == 0) {
-            // TODO throw an EmptyStackException
+           throw new EmptyStackException();
         }
         Object oldItem = items[count - 1];
         items[--count] = null; // Will be garbage collected...

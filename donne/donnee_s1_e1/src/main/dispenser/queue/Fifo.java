@@ -1,6 +1,7 @@
 package dispenser.queue;
 
 import dispenser.Dispenser;
+import java.util.EmptyStackException;
 
 /**
  *
@@ -22,29 +23,43 @@ public class Fifo<E> implements Dispenser<E> {
     private int count;
 
     /**
-     * crée un <code>fifo</code> vide
+     * crée un
+     * <code>fifo</code> vide
      */
     public Fifo() {
+        items = (E[]) new Object[MAX_ITEMS];
+        count = 0;
     }
-    
+
     /**
      * ajoute l'élément passé en paramètre au fifo
      *
      * @param item l'élément que l'on veut ajouter au fifo
      */
     @Override
-    public void put(Object item) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void put(E item) {
+        if (count >= MAX_ITEMS) {
+            throw new StackOverflowError();
+        }
+
+        items[count] = item;
+        count++;
     }
 
     /**
-     * supprime l'élément à la fin du stack
+     * supprime le premier élément du fifo
      *
+     * @todo finir la méthode. Si on supprim l'élém à l'index 0 ça fout le bordel...
      * @return l'élément supprimé
      */
     @Override
     public E remove() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (count == 0) {
+            throw new EmptyStackException();
+        }
+
+        
+       return null;
     }
 
     /**
@@ -54,17 +69,17 @@ public class Fifo<E> implements Dispenser<E> {
      */
     @Override
     public E item() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (E) items[0];
     }
 
     /**
-     *test si le fifo est vide ou non
-     * 
-     * @return <code>true</code> si et seulement si le fifo est vide.
+     * test si le fifo est vide ou non
+     *
+     * @return <code>true</code> si et seulement si le fifo est vide. * * *
      * sinon <code>false</code>
      */
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return count == 0;
     }
 }

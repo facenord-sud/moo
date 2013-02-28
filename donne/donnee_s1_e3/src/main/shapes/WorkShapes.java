@@ -503,8 +503,13 @@ public class WorkShapes extends javax.swing.JFrame {
         textzone.setText('\n' + "Sum of all perimeters = " + totper);
     }//GEN-LAST:event_perimeterMenuItemActionPerformed
     
+    /**
+     * calcule la somme de toutes les figures au clique dans le menu de "sum of area"
+     * @param evt 
+     */
     private void areaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaMenuItemActionPerformed
-        // TODO Add your code for the Serie 1(1) of Genie Logiciel here!!
+        // @TODO Add your code for the Serie 1(1) of Genie Logiciel here!!
+        
     }//GEN-LAST:event_areaMenuItemActionPerformed
     
     private void listMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listMenuItemActionPerformed
@@ -1132,7 +1137,8 @@ public class WorkShapes extends javax.swing.JFrame {
                             circleRezise.y = newCenterY+5;
                             int radius = java.lang.Math.min(boundWidth/2, boundHight/2);
                             circleRezise.wide = radius;
-                            circleRezise.high = radius;
+//                            TODO regarder. il me semble qu'un rond n'a pas besoin de hauteur
+//                            circleRezise.high = radius;
                         }
                         if (Ellipse.class.isInstance(lastShapeOnFocus) && isCircle == false) {
                             Ellipse ellipseRezise = (Ellipse) lastShapeOnFocus;

@@ -7,10 +7,12 @@ public abstract class AShape implements Shape {
     public AShape() {
     }
     
+    @Override
     public int getID() {
         return id;
     }
     
+    @Override
     public void setID(int newid) {
         id = newid;
     }

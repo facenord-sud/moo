@@ -21,7 +21,7 @@ public class DispenserTest {
 		loggingService.info("put (68)");
 		testStack.put(68);
 		loggingService.info("put (111)");
-		testStack.put(111);
+		testStack.put(11);
 		
 		loggingService.info("item: " + testStack.item());
 		loggingService.info("item: " + testStack.item());

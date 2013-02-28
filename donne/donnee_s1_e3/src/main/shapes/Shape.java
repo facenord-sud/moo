@@ -15,6 +15,7 @@ public interface Shape extends java.io.Serializable {
     
     void setID(int newid);
     
+    @Override
     String toString();
     
     void draw(Graphics g);
