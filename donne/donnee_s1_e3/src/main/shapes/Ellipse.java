@@ -4,6 +4,7 @@
  */
 package shapes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -14,6 +15,11 @@ import java.awt.Point;
 public class Ellipse extends Circle{
     
     protected int high;
+    
+    public Ellipse(int x, int y, int a, int b, Color color, int id) {
+        super(x, y, a, color, id);
+        this.high = b;
+    }
 
     @Override
     public double perimeter() {

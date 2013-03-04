@@ -4,6 +4,7 @@
  */
 package shapes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -11,8 +12,12 @@ import java.awt.Point;
  *
  * @author leo
  */
-public class Triangle extends AShape{
-
+public class Triangle extends Polygon{
+    
+    public Triangle(int[] vx, int[] vy, Color color, int id) {
+        super(vx, vy, color, id);
+    }
+    
     @Override
     public double perimeter() {
         throw new UnsupportedOperationException("Not supported yet.");
