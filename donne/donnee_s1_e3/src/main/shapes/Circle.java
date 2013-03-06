@@ -23,7 +23,7 @@ public class Circle extends AShape {
 
     @Override
     public double perimeter() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Math.PI*Math.pow(this.wide, 2);
     }
 
     @Override
