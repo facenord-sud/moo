@@ -30,7 +30,6 @@ public class Triangle extends Polygon {
 
     @Override
     public void change() {
-        
     }
 
     @Override
@@ -46,5 +45,10 @@ public class Triangle extends Polygon {
     @Override
     public boolean contains(Point p) {
         return super.contains(p);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + getID() + ") Triangle: number of vertices = " + x.length + ", perimeter = " + perimeter() + ", area = " + area();
     }
 }

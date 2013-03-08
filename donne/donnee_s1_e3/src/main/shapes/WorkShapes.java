@@ -544,11 +544,21 @@ public class WorkShapes extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        new OpenShapesFileDialog(this).setVisible(true);
+//        new OpenShapesFileDialog(this).setVisible(true);
+        JFileChooser chooser = new JFileChooser();
+        if (chooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+        this.openShapes(chooser.getSelectedFile().toString());
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-        new EnterFileNameDialog(this).setVisible(true);
+//        new EnterFileNameDialog(this).setVisible(true);
+        JFileChooser chooser = new JFileChooser();
+        if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+        this.saveShapes(chooser.getSelectedFile().toString());
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     private void changeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeItemActionPerformed
@@ -664,7 +674,8 @@ public class WorkShapes extends javax.swing.JFrame {
     }
 
     public void openShapes(String filename) {
-        ObjectInputStream ois = null;
+        
+        ObjectInputStream ois;
         try {
             // TODO numa fait
 
@@ -674,18 +685,16 @@ public class WorkShapes extends javax.swing.JFrame {
                     new File(filename))));
             shapes = new ArrayList<>();
             Shape s = (Shape) ois.readObject();
-            while (s != null) {
-                shapes.add(s);
-                s = (Shape) ois.readObject();
-                ois.close();
-            }
-        } catch (Exception e) {
+            shapes.add(s);
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             new WrongFileNameErrorBox(this).setVisible(true);
         }
 
         // TODO numa fait
         // Hint: to set the last ID of the IDGenerator correctly...
-        IdGenerator.getUniqueInstance().setLastId(shapes.get(shapes.size()-1).getID());
+        IdGenerator.getUniqueInstance().setLastId(shapes.get(shapes.size() - 1).getID());
         refreshShapes();
 
     }
@@ -695,7 +704,7 @@ public class WorkShapes extends javax.swing.JFrame {
         ObjectOutputStream oos;
         try {
             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(filename))));
-            for(Shape s : shapes) {
+            for (Shape s : shapes) {
                 oos.writeObject(s);
             }
             oos.close();
@@ -783,10 +792,11 @@ public class WorkShapes extends javax.swing.JFrame {
     }
 
     private void printListShapes() {
-        for(Shape s : shapes) {
-            this.textzone.setText(s.toString()+"\n");
+        this.textzone.setText("");
+        for (Shape s : shapes) {
+            this.textzone.setText(this.textzone.getText() + s.toString() + "\n");
         }
-        
+
     }
 
     private class ShapesMouseListener implements MouseListener {

@@ -37,7 +37,7 @@ public class Rectangle extends Polygon {
 
     public String toString() {
         //return "Rectangle with wide " + this.wide + " and high " + this.high;
-        return "(" + getID() + ") Rectangle: side a = " + this.wide + ", side b = " + this.high + ", perimeter = " + perimeter() + ", area = " + area();
+        return "(" + getID() + ") Rectangle: side a = " + this.wide + ", side b = " + this.high + ", perimeter = " + perimeter() + ", area = " + area()+", color = "+this.color;
     }
 
     public void draw(Graphics g) {
