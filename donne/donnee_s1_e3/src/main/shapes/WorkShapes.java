@@ -14,11 +14,15 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,8 +30,17 @@ import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import shapes.comparator.ByArea;
+import shapes.comparator.ById;
+import shapes.comparator.ByPerimeter;
 import shapes.gui.About;
 import shapes.gui.ChangeDialog;
 import shapes.gui.CircleDialog;
@@ -54,7 +67,6 @@ public class WorkShapes extends javax.swing.JFrame {
     private static final int SIZE_LENGTH = 900;
     private static final int SIZE_HEIGHT = 500;
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu fileMenu;
@@ -480,8 +492,8 @@ public class WorkShapes extends javax.swing.JFrame {
     }//GEN-LAST:event_moveAllItemActionPerformed
 
     private void sortIDItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortIDItemActionPerformed
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
-        // Sort the vector shapes by the IDs...
+        // TODO numa fait
+        Collections.sort(shapes, new ById());
     }//GEN-LAST:event_sortIDItemActionPerformed
 
     private void clearItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearItemActionPerformed
@@ -542,14 +554,16 @@ public class WorkShapes extends javax.swing.JFrame {
     }//GEN-LAST:event_changeItemActionPerformed
 
     private void sortPerimeterItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortPerimeterItemActionPerformed
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
         // Sort the vector shapes by the perimeters...
+        Collections.sort(shapes, new ByPerimeter());
     }//GEN-LAST:event_sortPerimeterItemActionPerformed
 
     private void sortAreaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortAreaItemActionPerformed
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
+        Collections.sort(shapes, new ByArea());
         // Sort the vector shapes by the areas...
-        
+
     }//GEN-LAST:event_sortAreaItemActionPerformed
 
     private void polyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polyMenuItemActionPerformed
@@ -622,22 +636,44 @@ public class WorkShapes extends javax.swing.JFrame {
     }
 
     public void moveShape(int id, int dx, int dy) {
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
         // Hint: you can use the private method findShape() here...
+
+        Shape s = this.findShape(id);
+        s.move(dx, dy);
     }
 
     public void moveAllShapes(int dx, int dy) {
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
+
+        for (Shape s : shapes) {
+            s.move(dx, dy);
+        }
     }
 
     public void deleteShape(int id) {
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
         // Hint: you can use the private method findShape() here...
+
+        Shape s = this.findShape(id);
+        shapes.remove(s);
     }
 
     public void openShapes(String filename) {
+        ObjectInputStream ois = null;
         try {
             // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+
+            ois = new ObjectInputStream(
+                    new BufferedInputStream(
+                    new FileInputStream(
+                    new File(filename))));
+            shapes = new ArrayList<>();
+            Shape s = (Shape) ois.readObject();
+            while (s != null) {
+                shapes.add(s);
+                s = (Shape) ois.readObject();
+            }
         } catch (Exception e) {
             new WrongFileNameErrorBox(this).setVisible(true);
         }
@@ -646,6 +682,7 @@ public class WorkShapes extends javax.swing.JFrame {
         // Hint: to set the last ID of the IDGenerator correctly...
 
         refreshShapes();
+
     }
 
     public void saveShapes(String filename) {

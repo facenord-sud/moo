@@ -66,4 +66,5 @@ public class Circle extends AShape {
     public int getWide() {
         return wide;
     }
+
 }

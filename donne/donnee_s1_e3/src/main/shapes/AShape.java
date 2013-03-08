@@ -16,4 +16,6 @@ public abstract class AShape implements Shape{
     public void setID(int newid) {
         id = newid;
     }
+
+   
 }
