@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -662,7 +663,7 @@ public class WorkShapes extends javax.swing.JFrame {
     public void openShapes(String filename) {
         ObjectInputStream ois = null;
         try {
-            // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+            // TODO numa fait
 
             ois = new ObjectInputStream(
                     new BufferedInputStream(
@@ -678,16 +679,21 @@ public class WorkShapes extends javax.swing.JFrame {
             new WrongFileNameErrorBox(this).setVisible(true);
         }
 
-        // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+        // TODO numa fait
         // Hint: to set the last ID of the IDGenerator correctly...
-
+        IdGenerator.getUniqueInstance().setLastId(shapes.get(shapes.size()-1).getID());
         refreshShapes();
 
     }
 
     public void saveShapes(String filename) {
+        ObjectOutputStream oos;
         try {
-            // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
+            oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(filename))));
+            for(Shape s : shapes) {
+                oos.writeObject(s);
+            }
+            // TODO numa fait
         } catch (Exception e) {
             e.printStackTrace();
             new WrongFileNameErrorBox(this).setVisible(true);

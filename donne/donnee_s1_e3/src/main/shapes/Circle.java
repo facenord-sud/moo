@@ -3,6 +3,7 @@ package shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import shapes.gui.CircleDialog;
 
 /**
  *
@@ -23,36 +24,40 @@ public class Circle extends AShape {
 
     @Override
     public double perimeter() {
-        return Math.PI*Math.pow(this.wide, 2);
+        return 2*Math.PI*Math.pow(this.wide, 2);
     }
 
     @Override
     public double area() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Math.PI*Math.pow(this.wide, 2);
     }
 
     public void change(int x, int y, int radius) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.x = x;
+        this.y = y;
+        this.wide = radius;
+    }
+    
+    @Override
+    public void change() {
+        javax.swing.JDialog  jd = new CircleDialog(this);
+        jd.setVisible(true);
     }
 
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        g.fillOval(this.x, this.y, this.wide, this.wide);
     }
 
     @Override
     public void move(int dx, int dy) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.x+=dx;
+        this.y+=dy;
     }
 
     @Override
     public boolean contains(Point p) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void change() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return true;
     }
 
     public int getX() {
