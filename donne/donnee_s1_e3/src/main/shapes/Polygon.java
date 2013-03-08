@@ -45,7 +45,7 @@ public class Polygon extends AShape {
     public double area() {
         //TODO numa fait
         double area = 0;
-        for (int i = 0; i < this.x.length; i++) {
+        for (int i = 0; i < this.x.length-1; i++) {
             area+=(this.x[i]*this.y[i+1])-(this.x[i+1]*this.y[i]);
         }
         return area;

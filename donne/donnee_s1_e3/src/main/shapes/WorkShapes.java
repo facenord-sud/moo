@@ -495,6 +495,7 @@ public class WorkShapes extends javax.swing.JFrame {
     private void sortIDItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortIDItemActionPerformed
         // TODO numa fait
         Collections.sort(shapes, new ById());
+        this.printListShapes();
     }//GEN-LAST:event_sortIDItemActionPerformed
 
     private void clearItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearItemActionPerformed
@@ -558,11 +559,13 @@ public class WorkShapes extends javax.swing.JFrame {
         // TODO numa fait
         // Sort the vector shapes by the perimeters...
         Collections.sort(shapes, new ByPerimeter());
+        this.printListShapes();
     }//GEN-LAST:event_sortPerimeterItemActionPerformed
 
     private void sortAreaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortAreaItemActionPerformed
         // TODO numa fait
         Collections.sort(shapes, new ByArea());
+        this.printListShapes();
         // Sort the vector shapes by the areas...
 
     }//GEN-LAST:event_sortAreaItemActionPerformed
@@ -674,6 +677,7 @@ public class WorkShapes extends javax.swing.JFrame {
             while (s != null) {
                 shapes.add(s);
                 s = (Shape) ois.readObject();
+                ois.close();
             }
         } catch (Exception e) {
             new WrongFileNameErrorBox(this).setVisible(true);
@@ -694,6 +698,7 @@ public class WorkShapes extends javax.swing.JFrame {
             for(Shape s : shapes) {
                 oos.writeObject(s);
             }
+            oos.close();
             // TODO numa fait
         } catch (Exception e) {
             e.printStackTrace();
@@ -775,6 +780,13 @@ public class WorkShapes extends javax.swing.JFrame {
     public void addWorkShapesMouseListeners(ShapesJPanel shapesJPanel) {
         shapesJPanel.addMouseListener(new ShapesMouseListener());
         shapesJPanel.addMouseMotionListener(new MouseMotionListener());
+    }
+
+    private void printListShapes() {
+        for(Shape s : shapes) {
+            this.textzone.setText(s.toString()+"\n");
+        }
+        
     }
 
     private class ShapesMouseListener implements MouseListener {
