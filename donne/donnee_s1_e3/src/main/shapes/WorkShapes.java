@@ -5,9 +5,11 @@
  */
 package shapes;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridLayout;
+import java.awt.List;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Timer;
@@ -49,7 +53,8 @@ public class WorkShapes extends javax.swing.JFrame {
     private static final long serialVersionUID = 3258409547344394552L;
     private static final int SIZE_LENGTH = 900;
     private static final int SIZE_HEIGHT = 500;
-    private Vector<Shape> shapes = new Vector<Shape>();
+    private ArrayList<Shape> shapes = new ArrayList<Shape>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu fileMenu;
@@ -496,7 +501,7 @@ public class WorkShapes extends javax.swing.JFrame {
     private void perimeterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perimeterMenuItemActionPerformed
         double totper = 0;
         for (int i = 0; i < shapes.size(); i++) {
-            totper += shapes.elementAt(i).perimeter();
+            totper += shapes.get(i).perimeter();
         }
         textzone.setText('\n' + "Sum of all perimeters = " + totper);
     }//GEN-LAST:event_perimeterMenuItemActionPerformed
@@ -544,6 +549,7 @@ public class WorkShapes extends javax.swing.JFrame {
     private void sortAreaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortAreaItemActionPerformed
         // TODO Add your code for the Serie 1(2) of Genie Logiciel here!!
         // Sort the vector shapes by the areas...
+        
     }//GEN-LAST:event_sortAreaItemActionPerformed
 
     private void polyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polyMenuItemActionPerformed
@@ -660,14 +666,14 @@ public class WorkShapes extends javax.swing.JFrame {
         String res = '\n' + "List of figures:" + '\n';
         StringBuffer sb = new StringBuffer(res);
         for (int i = 0; i < shapes.size(); i++) {
-            sb.append(shapes.elementAt(i).toString() + '\n');
+            sb.append(shapes.get(i).toString() + '\n');
         }
         return sb.toString();
     }
 
     private Shape findShape(int id) {
         for (int i = 0; i < shapes.size(); i++) {
-            Shape s = shapes.elementAt(i);
+            Shape s = shapes.get(i);
             if (s.getID() == id) {
                 return s;
             }
@@ -711,7 +717,7 @@ public class WorkShapes extends javax.swing.JFrame {
     private Point[] points = null;
     private int nextPointCounter = 0;
     private Cursor cursor;
-    private Vector<Shape> boundShapes = new Vector<Shape>();
+    private ArrayList<Shape> boundShapes = new ArrayList<Shape>();
     private Vector<Shape> boundPolygon = new Vector<Shape>();
     private Timer timer;
     private javax.swing.JToggleButton jToggleRectangle;
@@ -1171,7 +1177,7 @@ public class WorkShapes extends javax.swing.JFrame {
 
                     if (boundShapes != null) {
                         for (int i = 0; i < boundShapes.size(); i++) {
-                            boundShapes.elementAt(i).move(dx, dy);
+                            boundShapes.get(i).move(dx, dy);
                         }
                     }
 

@@ -8,6 +8,7 @@ package shapes.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Vector;
 import shapes.Shape;
 
@@ -17,11 +18,11 @@ import shapes.Shape;
  */
 public class ShapesJPanel extends javax.swing.JPanel {
 	private static final long serialVersionUID = 3256728381281482035L;
-	private Vector<Shape> shapes;
-        private Vector<Shape> guiShapes;
+	private ArrayList<Shape> shapes;
+        private ArrayList<Shape> guiShapes;
     
     /** Creates new ShapesJPanel */
-    public ShapesJPanel(Vector<Shape> shapes, Vector<Shape> guiShapes) {
+    public ShapesJPanel(ArrayList<Shape> shapes, ArrayList<Shape> guiShapes) {
         super();
         this.shapes = shapes;
         this.guiShapes = guiShapes;
@@ -31,10 +32,10 @@ public class ShapesJPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         for(int i = 0; i < shapes.size(); i++) {
-            shapes.elementAt(i).draw(g);
+            shapes.get(i).draw(g);
         }
         for(int i = 0; i < guiShapes.size(); i++) {
-            guiShapes.elementAt(i).draw(g);
+            guiShapes.get(i).draw(g);
         }
     }
     

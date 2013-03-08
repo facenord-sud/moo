@@ -1,6 +1,6 @@
 package shapes;
 
-public abstract class AShape implements Shape {
+public abstract class AShape implements Shape{
 
     private int id;
     
