@@ -3,7 +3,7 @@ package shapes;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public interface Shape extends java.io.Serializable {
+public interface Shape extends java.io.Serializable{
     
     double perimeter();
     
