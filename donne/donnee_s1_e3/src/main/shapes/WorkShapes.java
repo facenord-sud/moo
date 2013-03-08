@@ -687,6 +687,7 @@ public class WorkShapes extends javax.swing.JFrame {
     }
 
     public void saveShapes(String filename) {
+        //TODO cas d'écrasement fichier
         ObjectOutputStream oos;
         try {
             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(filename))));

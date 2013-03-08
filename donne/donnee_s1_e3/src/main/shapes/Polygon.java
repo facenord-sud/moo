@@ -26,6 +26,7 @@ public class Polygon extends AShape {
         this.color = color;
     }
 
+    @Override
     public double perimeter() {
         double peri = 0;
         for (int i = 0, length = this.x.length; i < length; i++) {
@@ -40,11 +41,17 @@ public class Polygon extends AShape {
         return d;
     }
 
+    @Override
     public double area() {
-        // TODO Add your code for the Serie 1(1) of Genie Logiciel here!!
-        return 0;
+        //TODO numa fait
+        double area = 0;
+        for (int i = 0; i < this.x.length; i++) {
+            area+=(this.x[i]*this.y[i+1])-(this.x[i+1]*this.y[i]);
+        }
+        return area;
     }
 
+    @Override
     public void change() {
         javax.swing.JDialog d = new PolygonDialog(this);
         d.setVisible(true);
@@ -55,15 +62,18 @@ public class Polygon extends AShape {
         this.y = y;
     }
 
+    @Override
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillPolygon(x, y, x.length);
     }
 
+    @Override
     public String toString() {
         return "(" + getID() + ") Polygon: number of vertices = " + x.length + ", perimeter = " + perimeter() + ", area = " + area();
     }
 
+    @Override
     public void move(int dx, int dy) {
         for (int i = 0; i < this.x.length; i++) {
             this.x[i] += dx;
@@ -71,6 +81,7 @@ public class Polygon extends AShape {
         }
     }
 
+    @Override
     public boolean contains(Point p) {
 
         //up means higher than the mouseclick y coordinate, down means lower than the mousclick y coordinate
@@ -138,4 +149,7 @@ public class Polygon extends AShape {
         }
     }
 
+    public Color getColor() {
+        return color;
+    }
 }

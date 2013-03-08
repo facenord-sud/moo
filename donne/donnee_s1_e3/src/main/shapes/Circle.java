@@ -46,6 +46,7 @@ public class Circle extends AShape {
 
     @Override
     public void draw(Graphics g) {
+        g.setColor(color);
         g.fillOval(this.x, this.y, this.wide, this.wide);
     }
 
@@ -57,7 +58,11 @@ public class Circle extends AShape {
 
     @Override
     public boolean contains(Point p) {
-        return true;
+        double leftAssert = Math.pow(p.x-this.x, 2) + Math.pow(p.y-this.y, 2);
+        if(leftAssert<=Math.pow(this.wide, 2)){
+            return true;
+        }
+        return false;
     }
 
     public int getX() {

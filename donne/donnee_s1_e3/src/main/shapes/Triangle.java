@@ -12,40 +12,39 @@ import java.awt.Point;
  *
  * @author leo
  */
-public class Triangle extends Polygon{
-    
+public class Triangle extends Polygon {
+
     public Triangle(int[] vx, int[] vy, Color color, int id) {
         super(vx, vy, color, id);
     }
-    
+
     @Override
     public double perimeter() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return super.perimeter();
     }
 
     @Override
     public double area() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return super.area();
     }
 
     @Override
     public void change() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        super.draw(g);
     }
 
     @Override
     public void move(int dx, int dy) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        super.move(dx, dy);
     }
 
     @Override
     public boolean contains(Point p) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return super.contains(p);
     }
-    
 }
