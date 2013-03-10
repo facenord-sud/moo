@@ -21,13 +21,23 @@ public class Fifo<E> implements Dispenser<E> {
      * le nombre d'objets mis dans le tableau
      */
     private int count;
-
+    /**
+     * l'avant de la queue
+     */
+    private int front;
+    /**
+     * l'arrière de la queue
+     */
+    private int rear;
+        
     /**
      * crée un
      * <code>fifo</code> vide
      */
     public Fifo() {
         items = (E[]) new Object[MAX_ITEMS];
+        front = 0;
+        rear = -1;
         count = 0;
     }
 
@@ -42,7 +52,7 @@ public class Fifo<E> implements Dispenser<E> {
             throw new StackOverflowError();
         }
 
-        items[count] = item;
+        items[++rear] = item;
         count++;
     }
 
@@ -56,10 +66,12 @@ public class Fifo<E> implements Dispenser<E> {
     public E remove() {
         if (count == 0) {
             throw new EmptyStackException();
+            
         }
-
         
-       return null;
+        Object temp = items[front++];
+        count--;
+        return (E) temp;
     }
 
     /**
@@ -69,7 +81,7 @@ public class Fifo<E> implements Dispenser<E> {
      */
     @Override
     public E item() {
-        return (E) items[0];
+        return (E) items[front];
     }
 
     /**

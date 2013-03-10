@@ -72,7 +72,7 @@ public class ArrayStack<E> implements Dispenser<E> {
     @Override
     public E item() {
         if (count == 0) {
-            // TODO throw an EmptyStackException
+            throw new EmptyStackException();
         }
         return (E) items[count - 1];
     }
