@@ -1,6 +1,7 @@
 package dispenser;
 
 import dispenser.stack.ArrayStack;
+import dispenser.queue.Fifo;
 
 /**
  * A factory that creates a dispenser implemented as a stack or a queue.
@@ -25,6 +26,6 @@ public class DispenserFactory {
 	 * @return the created queue
 	 */
 	public static Dispenser createQueue() {
-		return null;
+		return new Fifo();
 	}
 }
