@@ -59,7 +59,7 @@ public class Fifo<E> implements Dispenser<E> {
     /**
      * supprime le premier élément du fifo
      *
-     * @todo finir la méthode. Si on supprim l'élém à l'index 0 ça fout le bordel...
+     * 
      * @return l'élément supprimé
      */
     @Override
