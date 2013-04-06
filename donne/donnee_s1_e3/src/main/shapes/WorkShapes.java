@@ -5,7 +5,6 @@
  */
 package shapes;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridLayout;
