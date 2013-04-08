@@ -3,42 +3,35 @@ package clock.timer;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import clock.analog.AnalogClock;
+import clock.observer.Observable;
+import clock.observer.Observer;
+import java.util.ArrayList;
 import java.util.logging.*;
 
 /**
- * <code>ClockTimer</code> is a subject for storing and maintaining the time of 
- * day. It notifies its observers every second. The class provides an interface 
+ * <code>ClockTimer</code> is a subject for storing and maintaining the time of
+ * day. It notifies its observers every second. The class provides an interface
  * for retrieving individual time units such as hour, minute and second.
- * 
+ *
  * @author Andreas Ruppen
  */
-public class ClockTimer implements Runnable {
+public class ClockTimer implements Runnable, Observable {
+
     private long time;
-    
+    private ArrayList<Observer> observers = new ArrayList<>();
     private Calendar calendar;
-    
     // delay in milliseconds
     private long delay = 1000;
-    
     private Thread thread;
+    private static Logger loggingService = Logger.getLogger("ClockTimer");
+    
 
-	private static Logger loggingService = Logger.getLogger("ClockTimer");
-	
-	/**
-	 * 
-	 * @uml.property name="analogClock"
-	 * @uml.associationEnd multiplicity="(1 1)"
-	 */
-	AnalogClock analogClock;
-
-	
     /**
-     * Creates a new instance of <code>ClockTimer</code>.
+     * Creates a new instance of
+     * <code>ClockTimer</code>.
      */
-    public ClockTimer(AnalogClock analogClock) {
-		// TODO Remove the analog clock argument from the constructor, once the observer pattern is used.
-		this.analogClock = analogClock;
+    public ClockTimer() {
+        
         calendar = new GregorianCalendar();
     }
 
@@ -66,17 +59,18 @@ public class ClockTimer implements Runnable {
     /**
      * Notifies the observers every second.
      */
+    @Override
     public void run() {
         while (thread != null) {
             try {
                 time = System.currentTimeMillis();
                 calendar.setTimeInMillis(time);
                 // TODO Notify observers here, instead of setting the time direcly.
-				// Program against the observer interface, instead of programming against the analog clock class!
-				analogClock.update(getHour(), getMinute(), getSecond());
+                // Program against the observer interface, instead of programming against the analog clock class!
+                this.notifyObs();
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
-            	loggingService.severe("Timer got interrupted");
+                loggingService.severe("Timer got interrupted");
             }
         }
     }
@@ -97,6 +91,23 @@ public class ClockTimer implements Runnable {
     public void stop() {
         if (thread != null) {
             thread = null;
+        }
+    }
+    
+    @Override
+    public void addObserver(Observer o) {
+        this.observers.add(o);
+    }
+    
+    @Override
+    public void removeObserver(Observer o) {
+        this.observers.remove(o);
+    }
+    
+    @Override
+    public void notifyObs() {
+        for (Observer o : this.observers) {
+            o.update(this.getHour(), this.getMinute(), this.getSecond());
         }
     }
 }

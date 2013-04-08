@@ -1,5 +1,6 @@
 package clock.analog;
 
+import clock.abstractGui.AbstractClockPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -28,7 +29,7 @@ import javax.swing.JPanel;
  * 
  * @author Andreas Ruppen
  */
-public class AnalogClockPanel extends JPanel {
+public class AnalogClockPanel extends AbstractClockPanel {
     private static final long serialVersionUID = 3544948857483180340L;
     
     private Color ccolor = Color.lightGray;
@@ -45,10 +46,6 @@ public class AnalogClockPanel extends JPanel {
     private double hda = mda / 12;
     private double nda = Math.PI / 6;
     
-    int hour;
-    int minute;
-    int second;
-    
     /**
      * Creates a new instance of <code>AnalogClockPanel</code>.
      */
@@ -56,18 +53,12 @@ public class AnalogClockPanel extends JPanel {
         setFont(font);
     }
     
-    /**
-     * Sets the clocks current time.
-     */
-    public void setTime(int hour, int minute, int second) {
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
-    }
+    
     
     /**
      * Overrides the superclass method by drawing an analog clock in the panel.
      */
+    @Override
     protected void paintComponent(Graphics g) {       
         // Some geometric calculations.
         int width = getWidth();
