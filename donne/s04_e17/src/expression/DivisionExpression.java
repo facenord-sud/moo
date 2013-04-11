@@ -5,19 +5,25 @@ import composite.ArithmeticExpression;
 
 public class DivisionExpression extends ArithmeticExpression {
 
-	public void depth() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public int depth() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	public void eval() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public int eval() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	public void prefixPrint() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public String prefixPrint() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	public void prettyPrint() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public String prettyPrint() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+	
 }

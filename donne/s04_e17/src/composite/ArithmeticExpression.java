@@ -1,29 +1,23 @@
 package composite;
 
+public abstract class ArithmeticExpression implements Expression {
 
-public class ArithmeticExpression extends Constant {
+    private Expression left;
+    private Expression right;
 
-	public void getLeft() {
-		throw new UnsupportedOperationException();
-	}
+    public ArithmeticExpression() {
+    }
 
-	public void getRight() {
-		throw new UnsupportedOperationException();
-	}
+    public ArithmeticExpression(Expression left, Expression right) {
+        this.left = left;
+        this.right = right;
+    }
 
-	public void depth() {
-		throw new UnsupportedOperationException();
-	}
+    public Expression getLeft() {
+        return this.left;
+    }
 
-	public void eval() {
-                throw new UnsupportedOperationException();
-	}
-
-	public void prefixPrint() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void prettyPrint() {
-		throw new UnsupportedOperationException();
-	}
+    public Expression getRight() {
+        return this.right;
+    }
 }

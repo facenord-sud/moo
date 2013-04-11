@@ -2,11 +2,11 @@ package composite;
 
 public interface Expression {
 
-	public void depth();
+	public int depth();
 
-	public void eval();
+	public int eval();
 
-	public void prefixPrint();
+	public String prefixPrint();
 
-	public void prettyPrint();
+	public String prettyPrint();
 }
