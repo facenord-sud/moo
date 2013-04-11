@@ -13,7 +13,7 @@ public class DivisionExpression extends ArithmeticExpression {
         @Override
 	public int eval() {
                 if (right.eval()==0) 
-                    throw new UnsupportedOperationException ("Division by '0' is not allowed");
+                    throw new ArithmeticException("Division by '0' is not allowed");
                 else
                     return left.eval() / right.eval();
 	}
