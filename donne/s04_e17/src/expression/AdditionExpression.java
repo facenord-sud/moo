@@ -4,19 +4,20 @@ import composite.ArithmeticExpression;
 
 public class AdditionExpression extends ArithmeticExpression {
 
-	public int depth() {
-		throw new UnsupportedOperationException();
-	}
+    private final String sign = "+";
 
+        @Override
 	public int eval() {
-		throw new UnsupportedOperationException();
+		return left.eval() + right.eval();
 	}
 
+        @Override
 	public String prefixPrint() {
-		throw new UnsupportedOperationException();
-	}
+            return "+"+left.prefixPrint()+" "+right.prefixPrint();
+        }
 
+        @Override
 	public String prettyPrint() {
-		throw new UnsupportedOperationException();
+		return left.prettyPrint()+"+"+right.prettyPrint();
 	}
 }

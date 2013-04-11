@@ -23,11 +23,11 @@ public class Constant implements Expression {
 
     @Override
     public String prefixPrint() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.toString(constant);
     }
 
     @Override
     public String prettyPrint() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.toString(constant);
     }
 }

@@ -2,8 +2,8 @@ package composite;
 
 public abstract class ArithmeticExpression implements Expression {
 
-    private Expression left;
-    private Expression right;
+    protected Expression left;
+    protected Expression right;
 
     public ArithmeticExpression() {
     }
@@ -11,6 +11,11 @@ public abstract class ArithmeticExpression implements Expression {
     public ArithmeticExpression(Expression left, Expression right) {
         this.left = left;
         this.right = right;
+    }
+
+    @Override
+    public int depth() {
+        return 1 + left.depth();
     }
 
     public Expression getLeft() {
