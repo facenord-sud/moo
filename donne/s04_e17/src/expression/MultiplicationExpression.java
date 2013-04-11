@@ -5,19 +5,19 @@ import composite.ArithmeticExpression;
 
 public class MultiplicationExpression extends ArithmeticExpression {
 
-	public void depth() {
+	public int depth() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void eval() {
+	public int eval() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void prefixPrint() {
+	public String prefixPrint() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void prettyPrint() {
+	public String prettyPrint() {
 		throw new UnsupportedOperationException();
 	}
 }
