@@ -1,9 +1,8 @@
-package composite;
-
+package expression;
 
 import composite.ArithmeticExpression;
 
-public class SubstactionExpression extends ArithmeticExpression {
+public class AdditionExpression extends ArithmeticExpression {
 
 	public void depth() {
 		throw new UnsupportedOperationException();

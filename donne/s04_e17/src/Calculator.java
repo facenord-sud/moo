@@ -7,6 +7,6 @@
  *
  * @author leo
  */
-public class Main {
+public class Calculator {
     
 }

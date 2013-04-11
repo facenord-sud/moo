@@ -1,5 +1,6 @@
 package composite;
 
+
 public class ArithmeticExpression extends Constant {
 
 	public void getLeft() {

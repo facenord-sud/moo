@@ -1,9 +1,9 @@
-package composite;
+package expression;
 
 
 import composite.ArithmeticExpression;
 
-public class DivisionExpression extends ArithmeticExpression {
+public class MultiplicationExpression extends ArithmeticExpression {
 
 	public void depth() {
 		throw new UnsupportedOperationException();
