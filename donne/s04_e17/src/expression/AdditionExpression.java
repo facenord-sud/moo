@@ -1,10 +1,15 @@
 package expression;
 
 import composite.ArithmeticExpression;
+import composite.Expression;
 
 public class AdditionExpression extends ArithmeticExpression {
 
     private final String sign = "+";
+    
+    public AdditionExpression(Expression left, Expression right) {
+        super(left, right);
+    }
 
         @Override
 	public int eval() {
@@ -18,6 +23,6 @@ public class AdditionExpression extends ArithmeticExpression {
 
         @Override
 	public String prettyPrint() {
-		return left.prettyPrint()+"+"+right.prettyPrint();
+		return left.prettyPrint()+" + "+right.prettyPrint();
 	}
 }

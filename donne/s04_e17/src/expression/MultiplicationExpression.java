@@ -2,26 +2,26 @@ package expression;
 
 
 import composite.ArithmeticExpression;
+import composite.Expression;
 
 public class MultiplicationExpression extends ArithmeticExpression {
-
-        @Override
-	public int depth() {
-		throw new UnsupportedOperationException();
-	}
+    
+        public MultiplicationExpression(Expression left, Expression right) {
+        super(left, right);
+    }
 
         @Override
 	public int eval() {
-		throw new UnsupportedOperationException();
+		return left.eval() * right.eval();
 	}
 
         @Override
 	public String prefixPrint() {
-		throw new UnsupportedOperationException();
-	}
+            return "*"+left.prefixPrint()+" "+right.prefixPrint();
+        }
 
         @Override
 	public String prettyPrint() {
-		throw new UnsupportedOperationException();
+		return left.prettyPrint()+" * "+right.prettyPrint();
 	}
 }
