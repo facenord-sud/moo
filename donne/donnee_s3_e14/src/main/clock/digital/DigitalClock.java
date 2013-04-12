@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 public class DigitalClock extends AbstractClockFrame{
     
     public DigitalClock(ClockTimer clockTimer) {
-        this.launch(clockTimer);
+       super(clockTimer);
     }
 
     @Override

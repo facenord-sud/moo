@@ -1,29 +1,35 @@
 package clock.util;
 
 import java.awt.Point;
+import java.util.Vector;
+import javax.swing.JFrame;
 
 /**
- * A singelton for managing the positions of application windows.
+ * A singelton for managing the positions of application windows. The actual 
+ * positioning strategy is delegated to an implementation of layout strategy.
  * 
  * @author Andreas Ruppen
  */
 public class PositionManager {
     private static PositionManager INSTANCE = new PositionManager();
-
-	/**
-	 * 
-	 * @uml.property name="mainWindowPosition" multiplicity="(0 1)"
+    
+    /**
+	 * @uml.property  name="layoutStrategy"
+	 * @uml.associationEnd  
 	 */
-	private Point mainWindowPosition;
-
-    private Point observerWindowPosition;
+    private LayoutStrategy layoutStrategy = new SimpleLayoutStrategy();
+    private Vector<JFrame> placedFrames = new Vector<JFrame>();
+    
+    /**
+	 * @uml.property  name="mainWindowPosition"
+	 */
+    private Point mainWindowPosition;
 
     /**
      * Creates a new instance of <code>PositionManager</code>.
      */
-    private PositionManager() {
+    protected PositionManager() {
         mainWindowPosition = new Point (100, 100);
-        observerWindowPosition = new Point (280, 80);
     }
     
     /**
@@ -32,22 +38,37 @@ public class PositionManager {
     public static PositionManager getUniqueInstance() {
         return INSTANCE;
     }
-
-	/**
-	 * Returns the position for the main window.
-	 * 
-	 * @uml.property name="mainWindowPosition"
-	 */
-	public Point getMainWindowPosition() {
-		return mainWindowPosition;
-	}
-
     
     /**
-     * Returns the position for a new clock window.
+	 * Returns the position for the main window.
+	 * @uml.property  name="mainWindowPosition"
+	 */
+    public Point getMainWindowPosition() {
+        return mainWindowPosition;
+    }
+    
+    /**
+     * Adds a new frame to the layout.
      */
-    public Point getClockWindowPosition() {
-        observerWindowPosition.translate(20, 20);
-        return observerWindowPosition;
+    public void addFrameToLayout(JFrame frame) {
+        placedFrames.addElement(frame);
+        layoutStrategy.addFrameToLayout(placedFrames, frame);
+    }
+    
+    /**
+     * Removes a frame from the layout.
+     */
+    public void removeFrameFromLayout(JFrame frame) {
+        placedFrames.remove(frame);
+        layoutStrategy.removeFrameFromLayout(placedFrames, frame);
+    }
+     
+    /**
+	 * Sets the layout strategy.
+	 * @uml.property  name="layoutStrategy"
+	 */
+    public void setLayoutStrategy(LayoutStrategy newLayoutStrategy) {
+        this.layoutStrategy = newLayoutStrategy;
+        layoutStrategy.doLayout(placedFrames);
     }
 }

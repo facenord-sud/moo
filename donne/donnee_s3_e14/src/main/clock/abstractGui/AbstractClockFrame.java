@@ -21,9 +21,11 @@ public abstract class AbstractClockFrame extends JFrame {
     protected AbstractClockPanel clockPanel;
 
     protected abstract void init();
-
-    protected void launch(ClockTimer clockTimer) {
-        this.clockTimer = clockTimer;
+    
+    public AbstractClockFrame() {}
+    
+    public AbstractClockFrame(ClockTimer clockTimer) {
+    this.clockTimer = clockTimer;
         this.observer = new Observer() {
             @Override
             public void update(int hour, int minute, int second) {
@@ -33,7 +35,7 @@ public abstract class AbstractClockFrame extends JFrame {
         };
         this.clockTimer.addObserver(this.observer);
         addWindowListener(new DetachOnClosingWindowListener());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.init();
 
         // Add the panel to the window.
@@ -44,8 +46,7 @@ public abstract class AbstractClockFrame extends JFrame {
 
         // Display the window.
         pack();
-        setVisible(true);
-    }
+        setVisible(true);}
 
     public void setClockTimer(ClockTimer clockTimer) {
         this.clockTimer = clockTimer;

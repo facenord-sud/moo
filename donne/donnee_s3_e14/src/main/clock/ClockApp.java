@@ -34,8 +34,6 @@ public class ClockApp {
     /**
      * The application's main method.
      */
-    public static void main(String[] args) {
-        new ClockApp();
-    }
+    
 }
 
