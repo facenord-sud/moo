@@ -23,7 +23,7 @@ public class DigitalClockNG extends AbstractClockFrame {
 
     @Override
     protected void init() {
-        DigitalClockPanelNG clockPanel = new DigitalClockPanelNG();
+        this.clockPanel = new DigitalClockPanelNG();
         this.clockPanel.setPreferredSize(new Dimension(550, 150));
         setTitle("Digital Clock NG");
     }

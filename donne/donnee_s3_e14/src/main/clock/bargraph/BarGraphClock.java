@@ -25,7 +25,7 @@ public class BarGraphClock extends AbstractClockFrame {
     @Override
     protected void init() {
         setTitle("Bars Clock");
-        BarGraphClockPanel clockPanel = new BarGraphClockPanel();
+        this.clockPanel = new BarGraphClockPanel();
         this.clockPanel.setPreferredSize(new Dimension(200, 180));
     }
 }

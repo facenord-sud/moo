@@ -2,6 +2,7 @@ package clock;
 
 import clock.abstractGui.AbstractClockFrame;
 import clock.analog.AnalogClock;
+import clock.binary.BinaryClock;
 import clock.digital.DigitalClock;
 import clock.timer.ClockTimer;
 import clock.util.SimpleLayoutStrategy;
@@ -42,6 +43,7 @@ public class ClockLauncher extends javax.swing.JFrame {
 
         jButtonDigital = new javax.swing.JButton();
         jButtonAnalog = new javax.swing.JButton();
+        jButtonBinary = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuCloseAll = new javax.swing.JMenuItem();
@@ -64,6 +66,13 @@ public class ClockLauncher extends javax.swing.JFrame {
         jButtonAnalog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAnalogActionPerformed(evt);
+            }
+        });
+
+        jButtonBinary.setText("Binary clock");
+        jButtonBinary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBinaryActionPerformed(evt);
             }
         });
 
@@ -123,9 +132,10 @@ public class ClockLauncher extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButtonDigital, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButtonAnalog))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(jButtonBinary, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButtonDigital, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButtonAnalog, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,7 +145,9 @@ public class ClockLauncher extends javax.swing.JFrame {
                 .add(jButtonDigital, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jButtonAnalog, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(18, 18, 18)
+                .add(jButtonBinary, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,6 +183,10 @@ public class ClockLauncher extends javax.swing.JFrame {
         SimpleLayoutStrategy layoutStrategy = new SimpleLayoutStrategy();
         layoutStrategy.doLayout(clocks);
     }//GEN-LAST:event_jMenuSimpleActionPerformed
+
+    private void jButtonBinaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBinaryActionPerformed
+        clocks.add(new BinaryClock(timer));
+    }//GEN-LAST:event_jButtonBinaryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +224,7 @@ public class ClockLauncher extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnalog;
+    private javax.swing.JButton jButtonBinary;
     private javax.swing.JButton jButtonDigital;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -23,7 +23,7 @@ public class BinaryClock extends AbstractClockFrame {
 
     @Override
     protected void init() {
-        BinaryClockPanel clockPanel = new BinaryClockPanel();
+        this.clockPanel = new BinaryClockPanel();
         this.clockPanel.setPreferredSize(new Dimension(200, 100));
         setTitle("Binary Clock");
     }

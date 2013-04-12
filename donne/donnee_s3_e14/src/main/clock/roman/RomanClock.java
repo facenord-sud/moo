@@ -23,7 +23,7 @@ public class RomanClock extends AbstractClockFrame {
 
     @Override
     protected void init() {
-        RomanClockPanel clockPanel = new RomanClockPanel();
+        this.clockPanel = new RomanClockPanel();
         this.clockPanel.setPreferredSize(new Dimension(200, 80));
         setTitle("Roman Clock");
     }
