@@ -4,7 +4,9 @@ import clock.abstractGui.AbstractClockFrame;
 import clock.analog.AnalogClock;
 import clock.digital.DigitalClock;
 import clock.timer.ClockTimer;
+import clock.util.SimpleLayoutStrategy;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public class ClockLauncher extends javax.swing.JFrame {
 
     private ClockTimer timer;
-    private ArrayList<AbstractClockFrame> clocks = new ArrayList<>();
+    private ArrayList<JFrame> clocks = new ArrayList<>();
 
     /**
      * Creates new form ClockLauncher
@@ -47,6 +49,7 @@ public class ClockLauncher extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuGridLayout = new javax.swing.JMenuItem();
         jMenuLineLayout = new javax.swing.JMenuItem();
+        jMenuSimple = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +105,14 @@ public class ClockLauncher extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuLineLayout);
 
+        jMenuSimple.setText("simple layout");
+        jMenuSimple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSimpleActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuSimple);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -135,7 +146,7 @@ public class ClockLauncher extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAnalogActionPerformed
 
     private void jMenuCloseAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCloseAllActionPerformed
-        for (AbstractClockFrame clock : clocks) {
+        for (JFrame clock : clocks) {
             clock.dispose();
         }
     }//GEN-LAST:event_jMenuCloseAllActionPerformed
@@ -155,6 +166,11 @@ public class ClockLauncher extends javax.swing.JFrame {
     private void jButtonDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDigitalActionPerformed
         clocks.add(new DigitalClock(timer));
     }//GEN-LAST:event_jButtonDigitalActionPerformed
+
+    private void jMenuSimpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSimpleActionPerformed
+        SimpleLayoutStrategy layoutStrategy = new SimpleLayoutStrategy();
+        layoutStrategy.doLayout(clocks);
+    }//GEN-LAST:event_jMenuSimpleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,5 +216,6 @@ public class ClockLauncher extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuGridLayout;
     private javax.swing.JMenuItem jMenuLineLayout;
     private javax.swing.JMenuItem jMenuQuit;
+    private javax.swing.JMenuItem jMenuSimple;
     // End of variables declaration//GEN-END:variables
 }
