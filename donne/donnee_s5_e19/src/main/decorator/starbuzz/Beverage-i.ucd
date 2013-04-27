@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Beverage-i" size="746,632" id="decorator.starbuzz" metadata="uml2-1.0" initialized="true" tag="5" key="323030353039323720636F666665655F6465636F7261746F725F646F6E6E65">
+  <children xsi:type="editmodel:ClassEditModel" name="Mocha" location="50,340" size="133,111" id="decorator.starbuzz/Mocha" runTimeClassModel="Mocha(Ldecorator.starbuzz.Beverage;),getName(),cost(),addedCost">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="addedCost" id="decorator.starbuzz/Mocha#addedCost"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,48">
+      <children xsi:type="editmodel:MethodEditModel" name="Mocha" id="decorator.starbuzz/Mocha#Mocha(Ldecorator.starbuzz.Beverage;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Mocha#cost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="decorator.starbuzz/Mocha#getName()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/CondimentDecorator&lt;-decorator.starbuzz/Mocha" source="//@children.0" target="//@children.7" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="133,12" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,110"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Soy" location="416,340" size="133,111" id="decorator.starbuzz/Soy" runTimeClassModel="Soy(Ldecorator.starbuzz.Beverage;),getName(),cost(),addedCost">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="addedCost" id="decorator.starbuzz/Soy#addedCost"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,48">
+      <children xsi:type="editmodel:MethodEditModel" name="Soy" id="decorator.starbuzz/Soy#Soy(Ldecorator.starbuzz.Beverage;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Soy#cost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="decorator.starbuzz/Soy#getName()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/CondimentDecorator&lt;-decorator.starbuzz/Soy" source="//@children.1" target="//@children.7" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="18,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="152,111"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Milk" location="233,340" size="133,111" id="decorator.starbuzz/Milk" runTimeClassModel="Milk(Ldecorator.starbuzz.Beverage;),getName(),cost(),addedCost">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="addedCost" id="decorator.starbuzz/Milk#addedCost"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,48">
+      <children xsi:type="editmodel:MethodEditModel" name="Milk" id="decorator.starbuzz/Milk#Milk(Ldecorator.starbuzz.Beverage;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Milk#cost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="decorator.starbuzz/Milk#getName()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/CondimentDecorator&lt;-decorator.starbuzz/Milk" source="//@children.2" target="//@children.7" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="90,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="41,111"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Whip" location="50,501" size="133,111" id="decorator.starbuzz/Whip" runTimeClassModel="getName(),cost(),addedCost,Whip(Ldecorator.starbuzz.Beverage;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="addedCost" id="decorator.starbuzz/Whip#addedCost"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,48">
+      <children xsi:type="editmodel:MethodEditModel" name="Whip" id="decorator.starbuzz/Whip#Whip(Ldecorator.starbuzz.Beverage;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Whip#cost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="decorator.starbuzz/Whip#getName()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/CondimentDecorator&lt;-decorator.starbuzz/Whip" source="//@children.3" target="//@children.7" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="109,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="42,111"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Decaf" location="50,179" size="75,79" id="decorator.starbuzz/Decaf" runTimeClassModel="Decaf(),cost()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="55,32">
+      <children xsi:type="editmodel:MethodEditModel" name="Decaf" id="decorator.starbuzz/Decaf#Decaf()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Decaf#cost()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.7/@sourceConnections.0 //@children.6/@sourceConnections.0 //@children.8/@sourceConnections.0" autoLocated="true" id="decorator.starbuzz/Beverage&lt;-decorator.starbuzz/Decaf" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="37,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="65,79" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="Beverage" location="309,50" size="131,79" id="decorator.starbuzz/Beverage" runTimeClassModel="description,cost()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="description" id="decorator.starbuzz/Beverage#description"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="46,16">
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Beverage#cost()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="HouseBlend" location="484,179" size="111,79" id="decorator.starbuzz/HouseBlend" runTimeClassModel="HouseBlend(),cost()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="91,32">
+      <children xsi:type="editmodel:MethodEditModel" name="HouseBlend" id="decorator.starbuzz/HouseBlend#HouseBlend()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/HouseBlend#cost()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/Beverage&lt;-decorator.starbuzz/HouseBlend" source="//@children.6" target="//@children.4/@sourceConnections.0" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="55,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.1/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.3/@sourceConnections.0" name="CondimentDecorator" location="282,179" size="172,111" id="decorator.starbuzz/CondimentDecorator" runTimeClassModel="getAddedCost(),cost(),name,getDescription()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="39,16">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="decorator.starbuzz/CondimentDecorator#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="105,48">
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/CondimentDecorator#cost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAddedCost" id="decorator.starbuzz/CondimentDecorator#getAddedCost()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDescription" id="decorator.starbuzz/CondimentDecorator#getDescription()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/Beverage&lt;-decorator.starbuzz/CondimentDecorator" source="//@children.7" target="//@children.4/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="86,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="DarkRoast" location="625,179" size="101,79" id="decorator.starbuzz/DarkRoast" runTimeClassModel="DarkRoast(),cost()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="81,32">
+      <children xsi:type="editmodel:MethodEditModel" name="DarkRoast" id="decorator.starbuzz/DarkRoast#DarkRoast()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/DarkRoast#cost()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/Beverage&lt;-decorator.starbuzz/DarkRoast" source="//@children.8" target="//@children.4/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="50,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Espresso" location="155,179" size="97,79" id="decorator.starbuzz/Espresso" runTimeClassModel="Espresso(),cost()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="77,32">
+      <children xsi:type="editmodel:MethodEditModel" name="Espresso" id="decorator.starbuzz/Espresso#Espresso()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cost" id="decorator.starbuzz/Espresso#cost()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="decorator.starbuzz/Beverage&lt;-decorator.starbuzz/Espresso" source="//@children.9" target="//@children.4/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="48,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="open=decorator.starbuzz/Beverage;wireOptions=1"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

@@ -5,6 +5,7 @@ import clock.analog.AnalogClock;
 import clock.binary.BinaryClock;
 import clock.digital.DigitalClock;
 import clock.timer.ClockTimer;
+import clock.util.GridLayoutStrategy;
 import clock.util.SimpleLayoutStrategy;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -172,7 +173,8 @@ public class ClockLauncher extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuLineLayoutActionPerformed
 
     private void jMenuGridLayoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGridLayoutActionPerformed
-        // TODO implémenter et créer le layout
+        GridLayoutStrategy gridLayoutStrategy  = new GridLayoutStrategy();
+        gridLayoutStrategy.doLayout(clocks);
     }//GEN-LAST:event_jMenuGridLayoutActionPerformed
 
     private void jButtonDigitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDigitalActionPerformed

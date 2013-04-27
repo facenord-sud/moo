@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.TextField;
 
 import clock.abstractGui.AbstractClockPanel;
+import java.awt.Graphics;
 
 /**
  * A panel in which the digital clock is displayed.
@@ -32,9 +33,6 @@ public class BinaryClockPanel extends AbstractClockPanel {
 	private TextField[] graphicBinaryMinute = new TextField[maxBits];
 	private TextField[] graphicBinarySecond = new TextField[maxBits];
 	
-	private int hour;
-	private int minute;
-	private int second;
 
 	/**
 	 * Creates a new instance of <code>BinaryClockPanel</code>.
@@ -89,7 +87,8 @@ public class BinaryClockPanel extends AbstractClockPanel {
 	/**
 	 * Sets the clocks current time.
 	 */
-	public void displayTime(int nowHour, int nowMinute, int nowSecond) {
+        @Override
+	public void setTime(int nowHour, int nowMinute, int nowSecond) {
 		if (nowSecond != second) {
 			second = nowSecond;
 			drawBits(graphicBinarySecond, second, onebitColorSecond);
