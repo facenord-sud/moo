@@ -1,6 +1,7 @@
 package decorator.starbuzz;
 
 public abstract class Beverage {
+    
 	/**
 	 * @uml.property  name="description"
 	 */

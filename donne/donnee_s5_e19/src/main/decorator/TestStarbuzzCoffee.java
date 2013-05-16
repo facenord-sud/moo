@@ -10,10 +10,10 @@ import decorator.starbuzz.Soy;
 import decorator.starbuzz.Whip;
 
 public class TestStarbuzzCoffee {
-	private static Logger loggingService = Logger.getLogger("TestStarbuzzCoffee");
+	private static final Logger loggingService = Logger.getLogger("TestStarbuzzCoffee");
 	public static void main(String args[]) {
 		Beverage beverage = new Espresso();
-		loggingService.info(beverage.getDescription() + " : $" + beverage.cost());
+		loggingService.log(Level.INFO, "{0} : ${1}", new Object[]{beverage.getDescription(), beverage.cost()});
 
 		Beverage beverage2 = new DarkRoast();
 		beverage2 = new Mocha(beverage2);

@@ -1,0 +1,1345 @@
+\documentclass[11pt]{report}
+\def\bl{\mbox{}\newline\mbox{}\newline{}}
+\usepackage{ifthen}
+\newcommand{\hide}[2]{
+\ifthenelse{\equal{#1}{inherited}}%
+{}%
+{}%
+}
+\newcommand{\entityintro}[3]{%
+  \hbox to \hsize{%
+    \vbox{%
+      \hbox to .2in{}%
+    }%
+    {\bf #1}%
+    \dotfill\pageref{#2}%
+  }
+  \makebox[\hsize]{%
+    \parbox{.4in}{}%
+    \parbox[l]{5in}{%
+      \vspace{1mm}\it%
+      #3%
+      \vspace{1mm}%
+    }%
+  }%
+}
+\newcommand{\isep}[0]{%
+\setlength{\itemsep}{-.4ex}
+}
+\newcommand{\sld}[0]{%
+\setlength{\topsep}{0em}
+\setlength{\partopsep}{0em}
+\setlength{\parskip}{0em}
+\setlength{\parsep}{-1em}
+}
+\newcommand{\headref}[3]{%
+\ifthenelse{#1 = 1}{%
+\addcontentsline{toc}{section}{\hspace{\qquad}\protect\numberline{}{#3}}%
+}{}%
+\ifthenelse{#1 = 2}{%
+\addcontentsline{toc}{subsection}{\hspace{\qquad}\protect\numerline{}{#3}}%
+}{}%
+\ifthenelse{#1 = 3}{%
+\addcontentsline{toc}{subsubsection}{\hspace{\qquad}\protect\numerline{}{#3}}%
+}{}%
+\label{#3}%
+\makebox[\textwidth][l]{#2 #3}%
+}%
+\newcommand{\membername}[1]{{\it #1}\linebreak}
+\newcommand{\divideents}[1]{\vskip -1em\indent\rule{2in}{.5mm}}
+\newcommand{\refdefined}[1]{
+\expandafter\ifx\csname r@#1\endcsname\relax
+\relax\else
+{$($ in \ref{#1}, page \pageref{#1}$)$}
+\fi}
+\newcommand{\startsection}[4]{
+\gdef\classname{#2}
+\subsection{\label{#3}{\bf {\sc #1} #2}}{
+\rule[1em]{\hsize}{4pt}\vskip -1em
+\vskip .1in 
+#4
+}%
+}
+\newcommand{\startsubsubsection}[2]{
+\subsubsection{\sc #1}{%
+\rule[1em]{\hsize}{2pt}%
+#2}
+}
+\usepackage{color}
+\date{20130502}
+\pagestyle{myheadings}
+\addtocontents{toc}{\protect\def\protect\packagename{}}
+\addtocontents{toc}{\protect\def\protect\classname{}}
+\markboth{\protect\packagename -- \protect\classname}{\protect\packagename -- \protect\classname}
+\oddsidemargin 0in
+\evensidemargin 0in
+% \topmargin -.8in
+\chardef\bslash=`\\
+\textheight 9.4in
+\textwidth 6.5in
+\title{SimJ-Basic}
+\author{Software Engineering Group}
+\begin{document}
+\maketitle
+\sloppy
+\raggedright
+\tableofcontents
+\gdef\packagename{}
+\gdef\classname{}
+\newpage
+\def\packagename{fabrique}
+\chapter{\bf Package fabrique}{
+\vskip -.25in
+\hbox to \hsize{\it Package Contents\hfil Page}
+\rule{\hsize}{.7mm}
+\vskip .13in
+\hbox{\bf Classes}
+\entityintro{EvenementNouvelleMachine}{l0}{This class implements the creation of a new machine event.}
+\entityintro{Fabrique}{l1}{This class implements a clothes factory.}
+\entityintro{FabriqueFrame}{l2}{This class implements a GUI for entering the several parameters needed
+ to simulate a clothes factory.}
+\entityintro{Production}{l3}{This class implements the production resource.}
+\entityintro{Reparation}{l4}{This class implements the reparation resource.}
+\vskip .1in
+\rule{\hsize}{.7mm}
+\vskip .1in
+\newpage
+\section{Classes}{
+\startsection{Class}{EvenementNouvelleMachine}{l0}{%
+{\small This class implements the creation of a new machine event.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+EvenementNouvelleMachine}}
+\noindent\hbox{\vbox{{\bf extends} simj.SimEvent}}
+}}}
+\startsubsubsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{EvenementNouvelleMachine}
+{\tt public {\bf EvenementNouvelleMachine}( {\tt double } {\bf pFiringTime} )
+\label{l5}\label{l6}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Constructs an event that creates a new machine.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt pFiringTime} - The firing time of this event.}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{execute}
+{\tt public void {\bf execute}(  )
+\label{l7}\label{l8}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Creates a new machine and sends it to the Production.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt simj.SimEvent}}{
+\par{\small 
+\refdefined{l9}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{execute}
+{\tt public abstract void {\bf execute}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Does the actual work of this event.
+ This is a primitive operation and each concrete event has to
+ implement it appropriately.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{getCurrentTime}
+\item{\vskip -1.9ex 
+\membername{getCurrentTime}
+{\tt protected final double {\bf getCurrentTime}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the current time of the simulation.
+ This commoditiy method is useful for subclasses.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The current time of the simulation. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getFiringTime}
+\item{\vskip -1.9ex 
+\membername{getFiringTime}
+{\tt public double {\bf getFiringTime}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the firing or execution time of this event.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The firing or execution time of this event. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{schedule}
+\item{\vskip -1.9ex 
+\membername{schedule}
+{\tt protected final void {\bf schedule}( {\tt double } {\bf pFiringTime} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Schedules this event at a given time. This visibility of this
+ method is protected to allow subclasses to reschedule themselves
+ if needed.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt pFiringTime} - The firing or execution time of this event.}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{Fabrique}{l1}{%
+{\small This class implements a clothes factory. There is a production workshop
+ (resouce number 1) and a reparation workshop (resource number). There are
+ machines which are used in production. After some time they break down and
+ are repaired by the reparation workshop. One repaired, the machines return
+ in the production workshop.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+Fabrique}}
+\noindent\hbox{\vbox{{\bf extends} simj.SimSimulation}}
+}}}
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{createEvents}
+{\tt protected void {\bf createEvents}(  )
+\label{l10}\label{l11}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Implements the abstract hook method SimSimulation.createEvents
+ by creating the bootstrap events of the simulation.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{createResources}
+\item{\vskip -1.9ex 
+\membername{createResources}
+{\tt protected void {\bf createResources}(  )
+\label{l12}\label{l13}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Implements abstract method SimSimulation.createResources
+ by creating the resources of this simulation, i.e. one production
+ and one reparation workshop.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{getInstance}
+\item{\vskip -1.9ex 
+\membername{getInstance}
+{\tt public static SimSimulation {\bf getInstance}( {\tt int } {\bf pN},
+{\tt int } {\bf pM},
+{\tt int } {\bf pK},
+{\tt double } {\bf pMin1},
+{\tt double } {\bf pMax1},
+{\tt double } {\bf pMin2},
+{\tt double } {\bf pMax2},
+{\tt double } {\bf pP1},
+{\tt double } {\bf pMPanne},
+{\tt double } {\bf pFinalEventTime},
+{\tt int } {\bf pScanInterval},
+{\tt boolean } {\bf pFineLogging} )
+\label{l14}\label{l15}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns an instance of this simulation according to the provided parameters.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt pN} - }
+   \item{
+\sld
+{\tt pM} - }
+   \item{
+\sld
+{\tt pK} - }
+   \item{
+\sld
+{\tt pMin1} - }
+   \item{
+\sld
+{\tt pMax1} - }
+   \item{
+\sld
+{\tt pMin2} - }
+   \item{
+\sld
+{\tt pMax2} - }
+   \item{
+\sld
+{\tt pP1} - }
+   \item{
+\sld
+{\tt pMPanne} - }
+   \item{
+\sld
+{\tt pFinalEventTime} - }
+   \item{
+\sld
+{\tt pScanInterval} - }
+   \item{
+\sld
+{\tt pFineLogging} - }
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+ 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getProduction}
+\item{\vskip -1.9ex 
+\membername{getProduction}
+{\tt public Production {\bf getProduction}(  )
+\label{l16}\label{l17}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the production resource.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The resource Production. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getReparation}
+\item{\vskip -1.9ex 
+\membername{getReparation}
+{\tt public Reparation {\bf getReparation}(  )
+\label{l18}\label{l19}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Return the reparation resource.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The resource Reparation. 
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt simj.SimSimulation}}{
+\par{\small 
+\refdefined{l20}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{createEvents}
+{\tt protected abstract void {\bf createEvents}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Creates the bootstrapping events of the simulation.
+ This is a primitive operation and has to be implemented by subclasses.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{createResources}
+\item{\vskip -1.9ex 
+\membername{createResources}
+{\tt protected abstract void {\bf createResources}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Creates the several resources of the simulation.
+ This is a primitive operation and has to be implemented by subclasses.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{getInstance}
+\item{\vskip -1.9ex 
+\membername{getInstance}
+{\tt public static SimSimulation {\bf getInstance}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the unique instance of this singleton class.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The unique instance of this singleton class. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getNumberOfResources}
+\item{\vskip -1.9ex 
+\membername{getNumberOfResources}
+{\tt public int {\bf getNumberOfResources}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the number of resources of the simulation.
+}%end item
+  \end{itemize}
+}
+\item{{\bf Returns} - 
+The number of resources of the simulation. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{getResource}
+\item{\vskip -1.9ex 
+\membername{getResource}
+{\tt public SimResource {\bf getResource}( {\tt int } {\bf index} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Returns the resource at the specified index.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt index} - An index into the resources of this simulation
+ (between {\tt 1} and {\tt getNumberOfResources}).}
+  \end{itemize}
+}%end item
+\item{{\bf Returns} - 
+The resource at the specified index. 
+}%end item
+\end{itemize}
+}%end item
+\divideents{registerResource}
+\item{\vskip -1.9ex 
+\membername{registerResource}
+{\tt  void {\bf registerResource}( {\tt simj.SimResource } {\bf pRes} )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Adds a resource to this simulation.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt pRes} - The resource to add to this simulation.}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\divideents{setupSimulation}
+\item{\vskip -1.9ex 
+\membername{setupSimulation}
+{\tt protected void {\bf setupSimulation}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Does some additional simulation initialization configuration.
+ This is a hook operation and may be overridden by subclasses.
+ By default it does nothing.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\divideents{startSimulation}
+\item{\vskip -1.9ex 
+\membername{startSimulation}
+{\tt public final void {\bf startSimulation}(  )
+}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Initializes and starts the simulation.
+ This is a template method and calls several primitive and hook operations.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}}
+}
+}
+\startsection{Class}{FabriqueFrame}{l2}{%
+{\small This class implements a GUI for entering the several parameters needed
+ to simulate a clothes factory.}
+\vskip .1in 
+\startsubsubsection{Declaration}{
+\fbox{\vbox{
+\hbox{\vbox{\small public 
+class 
+FabriqueFrame}}
+\noindent\hbox{\vbox{{\bf extends} javax.swing.JFrame}}
+}}}
+\startsubsubsection{Serializable Fields}{
+\begin{itemize}
+\item{
+private JCheckBox fineLogging\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel dureeLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField dureeSimulation\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JPanel jPanel1\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField machineReserve\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField machineService\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel machinesReserveLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel machinesServiceLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField mecaniciensService\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel mecaniciensServiceLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField moyPannes\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel moyPannesLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField probPanne\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel probPanneLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField scanInterval\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel scanIntervalLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JButton startButton\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField tempsRepMaxGrave\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel tempsRepMaxGraveLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField tempsRepMaxLegere\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel tempsRepMaxLegereLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField tempsRepMinGrave\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel tempsRepMinGraveLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JTextField tempsRepMinLegere\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel tempsRepMinLegereLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\item{
+private JLabel titleLabel\begin{itemize}\item{\vskip -.9ex }\end{itemize}
+}
+\end{itemize}
+}
+\startsubsubsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{FabriqueFrame}
+{\tt public {\bf FabriqueFrame}(  )
+\label{l21}\label{l22}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+Creates new form SupermarcheFrame.
+}%end item
+  \end{itemize}
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\startsubsubsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{main}
+{\tt public static void {\bf main}( {\tt java.lang.String []} {\bf args} )
+\label{l23}\label{l24}}%end signature
+\begin{itemize}
+\sld
+\item{
+\sld
+{\bf Usage}
+  \begin{itemize}\isep
+   \item{
+The main method of this class: it displays the GUI for the factory
+ simulation parametrization and creation.
+}%end item
+  \end{itemize}
+}
+\item{
+\sld
+{\bf Parameters}
+\sld\isep
+  \begin{itemize}
+\sld\isep
+   \item{
+\sld
+{\tt args} - A string array with the command line arguments (here they
+ are not used).}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\hide{inherited}{
+\startsubsubsection{Methods inherited from class {\tt javax.swing.JFrame}}{
+\par{\small 
+\refdefined{l25}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{\textless clinit\textgreater }
+{\tt static void {\bf \textless clinit\textgreater }(  )
+}%end signature
+}%end item
+\divideents{addImpl}
+\item{\vskip -1.9ex 
+\membername{addImpl}
+{\tt protected void {\bf addImpl}( {\tt java.awt.Component } {\bf arg0},
+{\tt java.lang.Object } {\bf arg1},
+{\tt int } {\bf arg2} )
+}%end signature
+}%end item
+\divideents{createRootPane}
+\item{\vskip -1.9ex 
+\membername{createRootPane}
+{\tt protected JRootPane {\bf createRootPane}(  )
+}%end signature
+}%end item
+\divideents{frameInit}
+\item{\vskip -1.9ex 
+\membername{frameInit}
+{\tt protected void {\bf frameInit}(  )
+}%end signature
+}%end item
+\divideents{getAccessibleContext}
+\item{\vskip -1.9ex 
+\membername{getAccessibleContext}
+{\tt public AccessibleContext {\bf getAccessibleContext}(  )
+}%end signature
+}%end item
+\divideents{getContentPane}
+\item{\vskip -1.9ex 
+\membername{getContentPane}
+{\tt public Container {\bf getContentPane}(  )
+}%end signature
+}%end item
+\divideents{getDefaultCloseOperation}
+\item{\vskip -1.9ex 
+\membername{getDefaultCloseOperation}
+{\tt public int {\bf getDefaultCloseOperation}(  )
+}%end signature
+}%end item
+\divideents{getGlassPane}
+\item{\vskip -1.9ex 
+\membername{getGlassPane}
+{\tt public Component {\bf getGlassPane}(  )
+}%end signature
+}%end item
+\divideents{getGraphics}
+\item{\vskip -1.9ex 
+\membername{getGraphics}
+{\tt public Graphics {\bf getGraphics}(  )
+}%end signature
+}%end item
+\divideents{getJMenuBar}
+\item{\vskip -1.9ex 
+\membername{getJMenuBar}
+{\tt public JMenuBar {\bf getJMenuBar}(  )
+}%end signature
+}%end item
+\divideents{getLayeredPane}
+\item{\vskip -1.9ex 
+\membername{getLayeredPane}
+{\tt public JLayeredPane {\bf getLayeredPane}(  )
+}%end signature
+}%end item
+\divideents{getRootPane}
+\item{\vskip -1.9ex 
+\membername{getRootPane}
+{\tt public JRootPane {\bf getRootPane}(  )
+}%end signature
+}%end item
+\divideents{getTransferHandler}
+\item{\vskip -1.9ex 
+\membername{getTransferHandler}
+{\tt public TransferHandler {\bf getTransferHandler}(  )
+}%end signature
+}%end item
+\divideents{isDefaultLookAndFeelDecorated}
+\item{\vskip -1.9ex 
+\membername{isDefaultLookAndFeelDecorated}
+{\tt public static boolean {\bf isDefaultLookAndFeelDecorated}(  )
+}%end signature
+}%end item
+\divideents{isRootPaneCheckingEnabled}
+\item{\vskip -1.9ex 
+\membername{isRootPaneCheckingEnabled}
+{\tt protected boolean {\bf isRootPaneCheckingEnabled}(  )
+}%end signature
+}%end item
+\divideents{paramString}
+\item{\vskip -1.9ex 
+\membername{paramString}
+{\tt protected String {\bf paramString}(  )
+}%end signature
+}%end item
+\divideents{processWindowEvent}
+\item{\vskip -1.9ex 
+\membername{processWindowEvent}
+{\tt protected void {\bf processWindowEvent}( {\tt java.awt.event.WindowEvent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{remove}
+\item{\vskip -1.9ex 
+\membername{remove}
+{\tt public void {\bf remove}( {\tt java.awt.Component } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{repaint}
+\item{\vskip -1.9ex 
+\membername{repaint}
+{\tt public void {\bf repaint}( {\tt long } {\bf arg0},
+{\tt int } {\bf arg1},
+{\tt int } {\bf arg2},
+{\tt int } {\bf arg3},
+{\tt int } {\bf arg4} )
+}%end signature
+}%end item
+\divideents{setContentPane}
+\item{\vskip -1.9ex 
+\membername{setContentPane}
+{\tt public void {\bf setContentPane}( {\tt java.awt.Container } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setDefaultCloseOperation}
+\item{\vskip -1.9ex 
+\membername{setDefaultCloseOperation}
+{\tt public void {\bf setDefaultCloseOperation}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setDefaultLookAndFeelDecorated}
+\item{\vskip -1.9ex 
+\membername{setDefaultLookAndFeelDecorated}
+{\tt public static void {\bf setDefaultLookAndFeelDecorated}( {\tt boolean } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setGlassPane}
+\item{\vskip -1.9ex 
+\membername{setGlassPane}
+{\tt public void {\bf setGlassPane}( {\tt java.awt.Component } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setIconImage}
+\item{\vskip -1.9ex 
+\membername{setIconImage}
+{\tt public void {\bf setIconImage}( {\tt java.awt.Image } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setJMenuBar}
+\item{\vskip -1.9ex 
+\membername{setJMenuBar}
+{\tt public void {\bf setJMenuBar}( {\tt javax.swing.JMenuBar } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setLayeredPane}
+\item{\vskip -1.9ex 
+\membername{setLayeredPane}
+{\tt public void {\bf setLayeredPane}( {\tt javax.swing.JLayeredPane } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setLayout}
+\item{\vskip -1.9ex 
+\membername{setLayout}
+{\tt public void {\bf setLayout}( {\tt java.awt.LayoutManager } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setRootPane}
+\item{\vskip -1.9ex 
+\membername{setRootPane}
+{\tt protected void {\bf setRootPane}( {\tt javax.swing.JRootPane } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setRootPaneCheckingEnabled}
+\item{\vskip -1.9ex 
+\membername{setRootPaneCheckingEnabled}
+{\tt protected void {\bf setRootPaneCheckingEnabled}( {\tt boolean } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setTransferHandler}
+\item{\vskip -1.9ex 
+\membername{setTransferHandler}
+{\tt public void {\bf setTransferHandler}( {\tt javax.swing.TransferHandler } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{update}
+\item{\vskip -1.9ex 
+\membername{update}
+{\tt public void {\bf update}( {\tt java.awt.Graphics } {\bf arg0} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+\startsubsubsection{Methods inherited from class {\tt java.awt.Frame}}{
+\par{\small 
+\refdefined{l26}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{\textless clinit\textgreater }
+{\tt static void {\bf \textless clinit\textgreater }(  )
+}%end signature
+}%end item
+\divideents{addNotify}
+\item{\vskip -1.9ex 
+\membername{addNotify}
+{\tt public void {\bf addNotify}(  )
+}%end signature
+}%end item
+\divideents{constructComponentName}
+\item{\vskip -1.9ex 
+\membername{constructComponentName}
+{\tt  String {\bf constructComponentName}(  )
+}%end signature
+}%end item
+\divideents{getAccessibleContext}
+\item{\vskip -1.9ex 
+\membername{getAccessibleContext}
+{\tt public AccessibleContext {\bf getAccessibleContext}(  )
+}%end signature
+}%end item
+\divideents{getCursorType}
+\item{\vskip -1.9ex 
+\membername{getCursorType}
+{\tt public int {\bf getCursorType}(  )
+}%end signature
+}%end item
+\divideents{getExtendedState}
+\item{\vskip -1.9ex 
+\membername{getExtendedState}
+{\tt public int {\bf getExtendedState}(  )
+}%end signature
+}%end item
+\divideents{getFrames}
+\item{\vskip -1.9ex 
+\membername{getFrames}
+{\tt public static Frame {\bf getFrames}(  )
+}%end signature
+}%end item
+\divideents{getIconImage}
+\item{\vskip -1.9ex 
+\membername{getIconImage}
+{\tt public Image {\bf getIconImage}(  )
+}%end signature
+}%end item
+\divideents{getMaximizedBounds}
+\item{\vskip -1.9ex 
+\membername{getMaximizedBounds}
+{\tt public Rectangle {\bf getMaximizedBounds}(  )
+}%end signature
+}%end item
+\divideents{getMenuBar}
+\item{\vskip -1.9ex 
+\membername{getMenuBar}
+{\tt public MenuBar {\bf getMenuBar}(  )
+}%end signature
+}%end item
+\divideents{getState}
+\item{\vskip -1.9ex 
+\membername{getState}
+{\tt public synchronized int {\bf getState}(  )
+}%end signature
+}%end item
+\divideents{getTitle}
+\item{\vskip -1.9ex 
+\membername{getTitle}
+{\tt public String {\bf getTitle}(  )
+}%end signature
+}%end item
+\divideents{isResizable}
+\item{\vskip -1.9ex 
+\membername{isResizable}
+{\tt public boolean {\bf isResizable}(  )
+}%end signature
+}%end item
+\divideents{isUndecorated}
+\item{\vskip -1.9ex 
+\membername{isUndecorated}
+{\tt public boolean {\bf isUndecorated}(  )
+}%end signature
+}%end item
+\divideents{paramString}
+\item{\vskip -1.9ex 
+\membername{paramString}
+{\tt protected String {\bf paramString}(  )
+}%end signature
+}%end item
+\divideents{postProcessKeyEvent}
+\item{\vskip -1.9ex 
+\membername{postProcessKeyEvent}
+{\tt  void {\bf postProcessKeyEvent}( {\tt java.awt.event.KeyEvent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{remove}
+\item{\vskip -1.9ex 
+\membername{remove}
+{\tt public void {\bf remove}( {\tt java.awt.MenuComponent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{removeNotify}
+\item{\vskip -1.9ex 
+\membername{removeNotify}
+{\tt public void {\bf removeNotify}(  )
+}%end signature
+}%end item
+\divideents{setBackground}
+\item{\vskip -1.9ex 
+\membername{setBackground}
+{\tt public void {\bf setBackground}( {\tt java.awt.Color } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setCursor}
+\item{\vskip -1.9ex 
+\membername{setCursor}
+{\tt public void {\bf setCursor}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setExtendedState}
+\item{\vskip -1.9ex 
+\membername{setExtendedState}
+{\tt public void {\bf setExtendedState}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setIconImage}
+\item{\vskip -1.9ex 
+\membername{setIconImage}
+{\tt public void {\bf setIconImage}( {\tt java.awt.Image } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setMaximizedBounds}
+\item{\vskip -1.9ex 
+\membername{setMaximizedBounds}
+{\tt public void {\bf setMaximizedBounds}( {\tt java.awt.Rectangle } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setMenuBar}
+\item{\vskip -1.9ex 
+\membername{setMenuBar}
+{\tt public void {\bf setMenuBar}( {\tt java.awt.MenuBar } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setOpacity}
+\item{\vskip -1.9ex 
+\membername{setOpacity}
+{\tt public void {\bf setOpacity}( {\tt float } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setResizable}
+\item{\vskip -1.9ex 
+\membername{setResizable}
+{\tt public void {\bf setResizable}( {\tt boolean } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setShape}
+\item{\vskip -1.9ex 
+\membername{setShape}
+{\tt public void {\bf setShape}( {\tt java.awt.Shape } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setState}
+\item{\vskip -1.9ex 
+\membername{setState}
+{\tt public synchronized void {\bf setState}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setTitle}
+\item{\vskip -1.9ex 
+\membername{setTitle}
+{\tt public void {\bf setTitle}( {\tt java.lang.String } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{setUndecorated}
+\item{\vskip -1.9ex 
+\membername{setUndecorated}
+{\tt public void {\bf setUndecorated}( {\tt boolean } {\bf arg0} )
+}%end signature
+}%end item
+\end{itemize}
+}}
+\startsubsubsection{Methods inherited from class {\tt java.awt.Window}}{
+\par{\small 
+\refdefined{l27}\vskip -2em
+\begin{itemize}
+\item{\vskip -1.9ex 
+\membername{\textless clinit\textgreater }
+{\tt static void {\bf \textless clinit\textgreater }(  )
+}%end signature
+}%end item
+\divideents{addNotify}
+\item{\vskip -1.9ex 
+\membername{addNotify}
+{\tt public void {\bf addNotify}(  )
+}%end signature
+}%end item
+\divideents{addOwnedWindow}
+\item{\vskip -1.9ex 
+\membername{addOwnedWindow}
+{\tt  void {\bf addOwnedWindow}( {\tt java.lang.ref.WeakReference } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{addPropertyChangeListener}
+\item{\vskip -1.9ex 
+\membername{addPropertyChangeListener}
+{\tt public void {\bf addPropertyChangeListener}( {\tt java.beans.PropertyChangeListener } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{addPropertyChangeListener}
+\item{\vskip -1.9ex 
+\membername{addPropertyChangeListener}
+{\tt public void {\bf addPropertyChangeListener}( {\tt java.lang.String } {\bf arg0},
+{\tt java.beans.PropertyChangeListener } {\bf arg1} )
+}%end signature
+}%end item
+\divideents{addWindowFocusListener}
+\item{\vskip -1.9ex 
+\membername{addWindowFocusListener}
+{\tt public synchronized void {\bf addWindowFocusListener}( {\tt java.awt.event.WindowFocusListener } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{addWindowListener}
+\item{\vskip -1.9ex 
+\membername{addWindowListener}
+{\tt public synchronized void {\bf addWindowListener}( {\tt java.awt.event.WindowListener } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{addWindowStateListener}
+\item{\vskip -1.9ex 
+\membername{addWindowStateListener}
+{\tt public synchronized void {\bf addWindowStateListener}( {\tt java.awt.event.WindowStateListener } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{adjustDecendantsOnParent}
+\item{\vskip -1.9ex 
+\membername{adjustDecendantsOnParent}
+{\tt  void {\bf adjustDecendantsOnParent}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{adjustListeningChildrenOnParent}
+\item{\vskip -1.9ex 
+\membername{adjustListeningChildrenOnParent}
+{\tt  void {\bf adjustListeningChildrenOnParent}( {\tt long } {\bf arg0},
+{\tt int } {\bf arg1} )
+}%end signature
+}%end item
+\divideents{applyCompoundShape}
+\item{\vskip -1.9ex 
+\membername{applyCompoundShape}
+{\tt final void {\bf applyCompoundShape}( {\tt sun.java2d.pipe.Region } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{applyCurrentShape}
+\item{\vskip -1.9ex 
+\membername{applyCurrentShape}
+{\tt final void {\bf applyCurrentShape}(  )
+}%end signature
+}%end item
+\divideents{applyResourceBundle}
+\item{\vskip -1.9ex 
+\membername{applyResourceBundle}
+{\tt public void {\bf applyResourceBundle}( {\tt java.util.ResourceBundle } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{applyResourceBundle}
+\item{\vskip -1.9ex 
+\membername{applyResourceBundle}
+{\tt public void {\bf applyResourceBundle}( {\tt java.lang.String } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{canContainFocusOwner}
+\item{\vskip -1.9ex 
+\membername{canContainFocusOwner}
+{\tt  boolean {\bf canContainFocusOwner}( {\tt java.awt.Component } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{clearMostRecentFocusOwnerOnHide}
+\item{\vskip -1.9ex 
+\membername{clearMostRecentFocusOwnerOnHide}
+{\tt final void {\bf clearMostRecentFocusOwnerOnHide}(  )
+}%end signature
+}%end item
+\divideents{closeSplashScreen}
+\item{\vskip -1.9ex 
+\membername{closeSplashScreen}
+{\tt final void {\bf closeSplashScreen}(  )
+}%end signature
+}%end item
+\divideents{connectOwnedWindow}
+\item{\vskip -1.9ex 
+\membername{connectOwnedWindow}
+{\tt  void {\bf connectOwnedWindow}( {\tt java.awt.Window } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{constructComponentName}
+\item{\vskip -1.9ex 
+\membername{constructComponentName}
+{\tt  String {\bf constructComponentName}(  )
+}%end signature
+}%end item
+\divideents{createBufferStrategy}
+\item{\vskip -1.9ex 
+\membername{createBufferStrategy}
+{\tt public void {\bf createBufferStrategy}( {\tt int } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{createBufferStrategy}
+\item{\vskip -1.9ex 
+\membername{createBufferStrategy}
+{\tt public void {\bf createBufferStrategy}( {\tt int } {\bf arg0},
+{\tt java.awt.BufferCapabilities } {\bf arg1} )
+}%end signature
+}%end item
+\divideents{deliverMouseWheelToAncestor}
+\item{\vskip -1.9ex 
+\membername{deliverMouseWheelToAncestor}
+{\tt  void {\bf deliverMouseWheelToAncestor}( {\tt java.awt.event.MouseWheelEvent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{dispatchEventImpl}
+\item{\vskip -1.9ex 
+\membername{dispatchEventImpl}
+{\tt  void {\bf dispatchEventImpl}( {\tt java.awt.AWTEvent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{dispatchMouseWheelToAncestor}
+\item{\vskip -1.9ex 
+\membername{dispatchMouseWheelToAncestor}
+{\tt  boolean {\bf dispatchMouseWheelToAncestor}( {\tt java.awt.event.MouseWheelEvent } {\bf arg0} )
+}%end signature
+}%end item
+\divideents{dispose}
+\item{\vskip -1.9ex 
+\membername{dispose}
+{\tt public void {\bf dispose}(  )
+}%end signature
+}%end item
+\divideents{disposeImpl}
+\item{\vskip -1.9ex 
+\membername{disposeImpl}
+{\tt  void {\bf disposeImpl}(  )
+}%end signature
+}%end item
+\divideents{doDispose}
+\item{\vskip -1.9ex 
+\membername{doDispose}
+{\tt  void {\bf doDispose}(  )
+}%end signature
+}%end item
+\divideents{eventEnabled}
+\item{\vskip -1.9ex 
+\membername{eventEnabled}
+{\tt  boolean {\bf eventEnabled}( {\tt java.awt.AWTEvent } {\bf arg0} )
+}%end signature
+}

@@ -1,0 +1,59 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults */
+
+BODY {
+	background-color: #FFFFFF;
+	FONT-SIZE: 80%;
+	FONT-FAMILY: Verdana, Myriad Web, Syntax, sans-serif;
+}
+
+H1 {    
+	FONT-WEIGHT: 500;
+	FONT-SIZE: 200%;
+	FONT-FAMILY: Tahoma, Verdana, Myriad Web, Syntax, sans-serif;
+	COLOR: #036;
+}
+
+H2 {
+	FONT-WEIGHT: 500;
+	FONT-SIZE: 175%;
+	FONT-FAMILY: Tahoma, Verdana, Myriad Web, Syntax, sans-serif;
+	COLOR: #036
+}
+
+H3 {
+	FONT-WEIGHT: 600;
+	FONT-SIZE: 158%;
+	FONT-FAMILY: Tahoma, Verdana, Myriad Web, Syntax, sans-serif;
+	COLOR: #036;
+}
+	
+A:link, A:visited {
+	COLOR: #0000CC;
+	TEXT-DECORATION: none;
+}
+
+A:active {
+	COLOR: #006600; /* Dark green */
+	TEXT-DECORATION: none;
+	FONT-WEIGHT: bold;
+}
+
+/* Table colors */
+.TableHeadingColor     { background: #99FFCC; color:#036; font-family: Arial, Tahoma, Helvetica, sans-serif; } /* Dark aqua background */
+.TableSubHeadingColor  { background: #CCFFCC; color:#036 } /* Light aqua background */
+.TableRowColor         { background: #FFFFFF; color:#000000 } /* White background, Black text */
+
+/* Font used in left-hand frame lists */
+.FrameTitleFont   { color: #036; font-family: Verdana, Helvetica, Arial, sans-serif }
+.FrameHeadingFont { color: #036; font-family: Verdana, Helvetica, Arial, sans-serif }
+.FrameItemFont    { font-family: Verdana, Helvetica, Arial, sans-serif }
+
+/* Navigation bar fonts and colors */
+.NavBarCell1    { background-color:#CCFFCC;} /* Light aqua */
+.NavBarCell1Rev { background-color:#66CCCC;} /* Very Dark aqua */
+.NavBarFont1    { font-family: Verdana, Arial, Helvetica, sans-serif; color:#036;}
+.NavBarFont1Rev { font-family: Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF;}
+.NavBarCell2    { font-family: Verdana, Arial, Helvetica, sans-serif; background-color:#FFFFFF;}
+.NavBarCell3    { font-family: Verdana, Arial, Helvetica, sans-serif; background-color:#FFFFFF;}

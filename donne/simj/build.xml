@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== -->
+<!-- Build file for - Software Engineering I                                -->
+<!-- ====================================================================== -->
+
+<project name="simj_simj" default="compile" basedir=".">
+
+	<!-- build-specific properties -->
+    <property file="build.properties" />
+
+	<!-- set global properties for this build -->
+    <property name="src.dir" value="src" />
+    <property name="src_main.dir" value="${src.dir}/main" />
+    <property name="build.dir" value="bin" />
+    <property name="lib.dir" value="lib" />
+    <property name="dist.dir" location="dist" />
+    <property name="reports.dir" value="reports" />
+    <property name="output.dir" value="output" />
+    <property name="logging.output.dir" value="output" />
+
+	<!-- for code reviewing reports -->
+    <property name="doc.dir" value="doc" />
+    <property name="javadoc.dir" value="${doc.dir}/javadoc" />
+    <property name="java2html_task.dir" location="${resources.dir}/java2html" />
+    <property name="sourcedoc.dir" value="${doc.dir}/source" />
+    <property name="browsable-source.dir" value="${sourcedoc.dir}/html" />
+    <property name="checkstyle_task.dir" location="${resources.dir}/checkstyle" />
+    <property name="checkstyle_report.dir" value="${reports.dir}/checkstyle" />
+    <property name="javadoc_check.dir" value="${reports.dir}/doccheck" />
+    <property name="doclets.dir" location="${resources.dir}/doclets" />
+	
+	<!-- properties for above task defs -->
+    <property name="ltx.doPDF" value="on" />
+    <property name="ltx.doTEXCLEAN" value="on" />
+    <property name="ltx.reRunPattern" value="There were undefined references" />
+    <property name="ltx2.bib.terse" value="false" />
+    <property name="ltx2.bib.minCrossrefs" value="1" />
+    <property name="compilationpath" value="./" />
+    
+    <property name="open.cmd" value="open" /> <!-- changer mettre commande pour afficher les pdf-->
+    <property name="convert.cmd" value="/sw/bin/gs" /> <!-- changer mettre commande pour concaténer les pdf-->
+    <property name="tmp.dir" value="/tmp" /> <!-- changer répertoire temporaire-->
+    <property name="tmp.srclisting.file" value="${tmp.dir}/src.tex" />
+    <property name="tmp.srclisting.cover.file" value="${tmp.dir}/src_cover.tex" />
+    <property name="tmp.conversion.file" value="${tmp.dir}/conversion.txt" />
+    
+    <!-- base path for j2l -->
+    <property name="j2l.base.path" value="${basedir}/${src_main.dir}" />
+    <property name="j2l.logos.path" value="${resources.dir}/images" />
+    <property name="s2l.style" value="${resources.dir}/code_formatter" />
+	
+	<!-- =================================================================== -->
+	<!-- Task Defs                                                           -->
+	<!-- =================================================================== -->
+    <taskdef
+        name="latex"  
+        classname="de.dokutransdata.antlatex.LaTeX"  
+        classpath="${resources.dir}/ant_latex/ant_latex_0.0.7.jar" />
+        
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${resources.dir}/ant_contrib/ant-contrib-1.0b3.jar" />
+        </classpath>
+    </taskdef>
+    
+    <taskdef name="bibtex"
+    classname="de.dokutransdata.antlatex.BibTeXTask"  
+    classpath="${resources.dir}/ant_latex/ant_latex_0.0.7.jar"/>
+
+
+
+	<!-- =================================================================== -->
+	<!-- Class paths                                                         -->
+	<!-- =================================================================== -->
+    <path id="compile.class.path">
+        <pathelement location="${lib.dir}/simj.jar" />
+        <pathelement location="${lib.dir}/commons-lang-2.4.jar" />
+    </path>
+
+    <path id="run.class.path">
+        <pathelement location="${build.dir}" />
+    </path>
+
+    <path id="javadoc.src.path">
+        <pathelement location="${src_main.dir}" />
+    </path>
+    
+    <path id="j2l.include.path">
+        <dirset dir="${src_main.dir}/simj" />
+        <!--<dirset dir="${src_main.dir}/supermarket" />-->
+        <!--<dirset dir="${src_main.dir}/fabrique" />-->
+    </path>
+
+	<!-- =================================================================== -->
+	<!-- Init targets                                                        -->
+	<!-- =================================================================== -->
+    <target name="init">
+		<!-- Create the time stamp -->
+        <tstamp />
+        <property name="now" value="${DSTAMP}-${TSTAMP}" />
+		<!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}" />
+		<!-- Create the build directory structure used for dist files -->
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${logging.output.dir}" />
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Compile: Default                                                    -->
+	<!-- =================================================================== -->
+    <target name="compile" depends="init" description="Compiles all Java sources">
+        <javac destdir="${build.dir}" classpathref="compile.class.path" deprecation="on">
+            <src path="${src.dir}" />
+            <include name="**/*.java" />
+        </javac>
+    </target>
+    
+    <target name="makejar" depends="compile"
+          	description="Builds the JAVA archive file containing all stuff">
+        <jar destfile="${ant.project.name}.jar" basedir="bin">
+            <include name="**"/>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+            </manifest>
+        </jar>
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Documentation                                                       -->
+	<!-- =================================================================== -->
+    <target name="javadoc" depends="init" description="Generate JavaDoc HTML pages">
+        <mkdir dir="${javadoc.dir}" />
+        <javadoc packagenames="${javadoc.packagenames}" sourcepathref="javadoc.src.path" classpathref="compile.class.path" destdir="${javadoc.dir}" author="true" version="false" use="true" verbose="false" package="true" windowtitle="${javadoc.windowtitle}" splitindex="true">
+            <link href="http://java.sun.com/javase/6/docs/api/" />
+            <link href="http://www.junit.org/junit/javadoc/3.8.1/" />
+        </javadoc>
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- DocCheck: Check and Review the javadoc                              -->
+	<!-- =================================================================== -->
+    <target name="doccheck" description="Review documentation comments.">
+        <mkdir dir="${javadoc_check.dir}" />
+        <javadoc docletpath="${doclets.dir}/doccheck1.2b2/doccheck.jar" doclet="com.sun.tools.doclets.doccheck.DocCheck" sourcepath="${src.dir}" destdir="${javadoc_check.dir}" access="protected" additionalparam="-docletID -title '${project.name}' ">
+            <packageset dir="${src.dir}" />
+        </javadoc>
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Java2HTML: Generating browsable (HTML) source code                  -->
+	<!-- =================================================================== -->
+    <target name="java2html" description="Generates browsable HTML version of the source code.">
+        <mkdir dir="${browsable-source.dir}" />
+        <taskdef name="java2html" classname="de.java2html.anttasks.Java2HtmlTask" classpath="${java2html_task.dir}/java2html.jar" />
+        <java2html srcdir="${src.dir}" destdir="${browsable-source.dir}" includes="**/*.java" outputFormat="html" tabs="4" style="eclipse" showLineNumbers="true" showFileName="true" showTableBorder="true" includeDocumentHeader="true" includeDocumentFooter="true" addLineAnchors="true" lineAnchorPrefix="fff" horizontalAlignment="center" />
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Checkstyle: Generating a report of code conventions violations      -->
+	<!-- =================================================================== -->
+    <target name="checkstyle" description="Generates a report of code convention violations.">
+        <mkdir dir="${checkstyle_report.dir}" />
+        <taskdef resource="checkstyletask.properties" classpath="${checkstyle_task.dir}/checkstyle-all-4.2.jar" />
+        <checkstyle config="${checkstyle_task.dir}/sun_checks.xml" failureProperty="checkstyle.failure" failOnViolation="false">
+            <formatter type="xml" tofile="${checkstyle_report.dir}/checkstyle_report.xml" />
+            <fileset dir="${src.dir}" includes="**/*.java" />
+        </checkstyle>
+        <style in="${checkstyle_report.dir}/checkstyle_report.xml" out="${checkstyle_report.dir}/checkstyle_report.html" style="${checkstyle_task.dir}/contrib/checkstyle-noframes-sorted.xsl" />
+    </target>
+	
+	<!-- =================================================================== -->
+	<!-- Documentation: Generating a LaTeX document of the source code       -->
+	<!-- =================================================================== -->
+    <target name="src2ltx" description="Generate LaTeX formatted source-code" >
+        <mkdir dir="${doc.dir}" />
+        <antcall target="-add-header-to-lxt">
+            <param name="ltx.file" value="${tmp.srclisting.cover.file}" />
+        </antcall>
+        <property name="dirs" refid="j2l.include.path"/>
+        <delete file="${tmp.srclisting.file}" />
+        <foreach target="-recurse-packet" param="actual.dir" list="${dirs}" delimiter="${path.separator}" >
+            <param name="ltx.file" value="${tmp.srclisting.file}" />
+           <!-- <param name="j2l.base.path" value="${basedir}/${src_main.dir}" />-->
+        </foreach>
+        <antcall target="-add-footer-to-lxt">
+            <param name="ltx.file" value="${tmp.srclisting.cover.file}" />
+        </antcall>
+        <antcall target="doLaTeX">
+            <param name="ltx.file" value="${tmp.srclisting.cover.file}" />
+            <param name="ltx.output" value="${doc.dir}" />
+        </antcall>
+    </target>
+    
+    <target name="-recurse-packet">
+        <echo file="${tmp.conversion.file}" encoding="UTF-8">${actual.dir}</echo>
+        <loadfile property="section.name" srcfile="${tmp.conversion.file}">
+            <filterchain>
+                <replacestring from="${j2l.base.path}/" to=""/>
+                <replacestring from="/" to="." />
+            </filterchain>
+        </loadfile>
+        <echo file="${ltx.file}" append="true"  encoding="UTF-8">
+\section{Package ${section.name}}
+        </echo>
+        <foreach target="-add-item-to-ltx" param="src.file">
+            <fileset dir="${actual.dir}" >
+                <include name="*.java" />
+            </fileset>
+            <param name="ltx.file" value="${tmp.srclisting.file}" />
+            <!--<param name="j2l.base.path" value="${basedir}/${src_main.dir}" />-->
+        </foreach>
+    </target>
+    
+
+    
+    <target name="-add-header-to-lxt">
+        <echo file="${ltx.file}" encoding="UTF-8">
+\documentclass[francais,a4paper]{article}
+\usepackage{${s2l.style}}
+        </echo>
+        <echo file="${ltx.file}" append="true" encoding="UTF-8">
+\newcommand{\compilationpath}{${compilationpath}}
+\newcommand{\headerimagepath}{${j2l.logos.path}}
+\renewcommand{\projectname}{${ant.project.name}}
+\begin{document}
+
+% Header of the exercise:
+\exheader
+\tableofcontents
+\newpage
+% Content of the exercise, topics
+\input{${tmp.srclisting.file}}
+        </echo>
+    </target>
+    
+    <target name="-add-item-to-ltx" >
+        <echo file="${tmp.conversion.file}" encoding="UTF-8">${src.file}</echo>
+        <loadfile property="subsection.name" srcfile="${tmp.conversion.file}">
+            <filterchain>
+                <replacestring from="${j2l.base.path}/" to=""/>
+                <replacestring from="/" to="." />
+                <replacestring from=".java" to ="" />
+            </filterchain>
+        </loadfile>
+        <echo file="${ltx.file}" append="true"  encoding="UTF-8">
+\subsection{${subsection.name}}
+\lstinputlisting{${src.file}}
+        </echo>
+    </target>
+    
+    <target name="-add-footer-to-lxt">
+        <echo file="${ltx.file}" append="true"  encoding="UTF-8">
+\end{document}
+        </echo>
+    </target>
+    
+    <!-- =================================================================== -->
+	<!-- compiles the created *.tex file                                      -->
+	<!-- =================================================================== -->
+    <target name="doLaTeX">
+        <latex
+       latexfile="${ltx.file}"  
+       verbose="on"  
+       clean="${ltx.doTEXCLEAN}"  
+       pdftex="${ltx.doPDF}"
+       outputDir="${ltx.output}"
+       reRunPattern="${ltx.reRunPattern}"
+       workingDir="./">  
+       
+            <bibtex
+        workingDir="./"  
+        terse="${ltx2.bib.terse}"  
+        minCrossrefs="${ltx2.bib.minCrossrefs}" 
+        run="on" 
+        inloop="on"
+  >  
+                <fileset dir="${ltx.output}">
+                    <include name="*.aux"/>
+                </fileset>
+            </bibtex>
+        </latex>
+    </target>
+   
+    <target name="doBibTex">
+   
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Zip targets                                                         -->
+	<!-- =================================================================== -->
+
+	<!-- Creating the directory for the latest distribution -->
+    <target name="prepare_dist" depends="init">
+        <mkdir dir="${dist.dir}/${now}" />
+    </target>
+
+    <target name="dist" depends="prepare_dist, compile, javadoc" description="Builds the archive file containing all stuff">
+        <zip destfile="${dist.dir}/${now}/${project.name}-${authors}-${now}.zip" basedir="." includes="lib/**, src/**, bin/**, doc/**, build.xml, build.properties, logging.properties, .project, .classpath, reports/**">
+        </zip>
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- make-all: Generates all reports, docs and binaries 				 -->
+	<!-- =================================================================== -->
+    <target name="make-all" depends="" description="Generates all reports, compiles the project and creates a dist.">
+        <antcall target="java2html" />
+        <antcall target="javadoc" />
+        <antcall target="src2ltx" />
+        <antcall target="checkstyle" />
+        <antcall target="doccheck" />
+        <antcall target="dist" />
+    </target>
+
+
+	<!-- =================================================================== -->
+	<!-- Clean targets                                                       -->
+	<!-- =================================================================== -->
+    <target name="clean" description="Removes generated class files">
+		<!-- Delete the ${build.dir} directory tree -->
+        <delete dir="${build.dir}" />
+        <delete>
+            <fileset dir="${src.dir}" includes="**/*.class" />
+        </delete>
+    </target>
+
+    <target name="clean-javadoc" description="Removes generated Javadoc files">
+        <delete dir="${javadoc.dir}" />
+    </target>
+
+    <target name="clean-java2html" description="Removes generated java-html files.">
+        <delete dir="${browsable-source.dir}}" />
+    </target>
+
+    <target name="clean-doc" description="Remove all generated doc.">
+        <delete dir="${doc.dir}" />
+    </target>
+    <target name="clean-reports" description="Removes the generated reports (checkstyle).">
+        <delete dir="${reports.dir}" />
+    </target>
+
+    <target name="clean-all" depends="clean, clean-doc, clean-reports" description="Removes all generated artifacts">
+    </target>
+
+	<!-- =================================================================== -->
+	<!-- Misc targets                                                       -->
+	<!-- =================================================================== -->
+    <target name="changetimeoffiles">
+        <touch datetime="01/01/2006 0:01 am">
+            <fileset dir="${deploysrc}" />
+            <fileset dir="${deploybin}" />
+        </touch>
+    </target>
+
+    <target name="settimeoffilestonow">
+        <touch>
+            <fileset dir="${deploysrc}" />
+            <fileset dir="${deploybin}" />
+        </touch>
+    </target>
+
+</project>
