@@ -4,10 +4,15 @@
  */
 package factory;
 
+import simj.SimEntity;
+
 /**
  *
  * @author Numa de Montmollin <facenord.sud@gmail.com>
  */
-public class Factory {
+public class Machine extends  SimEntity{
     
+    public Machine(final int pId) {
+        super(pId);
+    }
 }
