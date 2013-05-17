@@ -22,7 +22,7 @@ public class Usine extends SimSimulation {
     private int minReparTimeLight;
     private int maxReparTimeHeavy;
 
-    public Usine(int nWorkingMachine, int nStockMachine, int nMachinist,
+    private Usine(int nWorkingMachine, int nStockMachine, int nMachinist,
             int tDurationOfLife, int pHeavyBreakdown, int minReparTimeHeavy,
             int maxReparTiemHeavy, int minReparTimeLight, int maxReparTimeHeavy,
             final double pFinalEventTime, final int pScanInterval, final boolean pFineLogging) {
@@ -57,7 +57,7 @@ public class Usine extends SimSimulation {
     @Override
     protected void createResources() {
         new ProductionSite(nWorkingMachine, "production site");
-        new ReparationSite(nMachinist, "reparation site");
+        new ReparationSite(nStockMachine, "Site de réparation");
     }
 
     public ProductionSite getProductionSite() {
@@ -66,5 +66,16 @@ public class Usine extends SimSimulation {
 
     public ReparationSite getReparationSite() {
         return (ReparationSite) this.getResource(1);
+    }
+
+    public static SimSimulation getInstance(int nWorkingMachine, int nStockMachine, int nMachinist,
+            int tDurationOfLife, int pHeavyBreakdown, int minReparTimeHeavy,
+            int maxReparTiemHeavy, int minReparTimeLight, int maxReparTimeHeavy) {
+
+        instance = new Usine(nWorkingMachine, nStockMachine, nMachinist,
+                tDurationOfLife, pHeavyBreakdown, minReparTimeHeavy,
+                maxReparTiemHeavy, minReparTimeLight, maxReparTimeHeavy,
+                0, 0, true);
+        return instance;
     }
 }

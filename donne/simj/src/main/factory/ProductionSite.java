@@ -1,10 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package factory;
 
 import simj.SimEntity;
+import simj.SimEntityFactory;
+import simj.SimRandom;
 import simj.SimResource;
 
 /**
@@ -13,8 +11,13 @@ import simj.SimResource;
  */
 public class ProductionSite extends SimResource {
 
-    public ProductionSite(final int pCapacity, final String ressourceName) {
-        super(pCapacity, ressourceName);
+    private MachineFactory machineFactory = MachineFactory.getUniqueInstance();
+    
+    public ProductionSite(int nWorkingMachine, final String ressourceName) {
+        super(nWorkingMachine, ressourceName);
+        for(int i=0;i<nWorkingMachine;i++) {
+            request(machineFactory.createSimEntity());
+        }
     }
 
     @Override

@@ -25,7 +25,9 @@ public class UsineFrame extends java.awt.Frame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonStart = new javax.swing.JButton();
+        jTextFieldnWorkingMAchine = new javax.swing.JTextField();
+        jButtonStop = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -33,13 +35,22 @@ public class UsineFrame extends java.awt.Frame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonStart.setText("start");
+        jButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonStartActionPerformed(evt);
             }
         });
-        add(jButton1, java.awt.BorderLayout.CENTER);
+        add(jButtonStart, java.awt.BorderLayout.CENTER);
+        add(jTextFieldnWorkingMAchine, java.awt.BorderLayout.NORTH);
+
+        jButtonStop.setText("stop");
+        jButtonStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStopActionPerformed(evt);
+            }
+        });
+        add(jButtonStop, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -51,8 +62,16 @@ public class UsineFrame extends java.awt.Frame {
         System.exit(0);
     }//GEN-LAST:event_exitForm
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonStopActionPerformed
+
+    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
+        Usine usine;
+        usine = (Usine) Usine.getInstance(Integer.valueOf(jTextFieldnWorkingMAchine.getText()),
+                SOMEBITS, WIDTH, ERROR, HEIGHT, WIDTH, WIDTH, PROPERTIES, WIDTH);
+        usine.startSimulation();
+    }//GEN-LAST:event_jButtonStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -65,6 +84,8 @@ public class UsineFrame extends java.awt.Frame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonStart;
+    private javax.swing.JButton jButtonStop;
+    private javax.swing.JTextField jTextFieldnWorkingMAchine;
     // End of variables declaration//GEN-END:variables
 }
